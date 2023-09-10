@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { changePassword, getEmailOtp, verifyOtp } from "../../services/auth";
+import { encryptData } from "../../utils/Encryption";
 
 const initialState = {
   stepper: "enter-email",
@@ -59,7 +60,7 @@ const useForgotPassword = ({ setError, getValues, errors }) => {
         if (getValues()?.new_password === getValues()?.confirm_password) {
           const res = await changePassword({
             email: enteredEmail,
-            password: getValues()?.confirm_password,
+            password: encryptData(getValues()?.confirm_password),
           });
           if (res.status !== "SUCCESS" || res?.responseCd !== "0") throw res;
           dispatch({ payload: { stepper: "password-changed" } });

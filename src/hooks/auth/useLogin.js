@@ -2,6 +2,7 @@ import { useContext, useReducer } from "react";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { authenticateUser } from "../../services/auth";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
+import { encryptData } from "../../utils/Encryption";
 
 const initialState = {
   showPassword: false,
@@ -37,7 +38,7 @@ const useLogin = ({ getValues, setAuthState }) => {
         const payload = {
           username: getValues()?.username_email,
           email: getValues()?.username_email,
-          password: getValues()?.password,
+          password: encryptData(getValues()?.password),
         };
         const res = await authenticateUser(payload);
         if (res?.status === "SUCCESS") {

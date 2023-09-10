@@ -17,11 +17,13 @@ const Main = () => {
         to={isAuthenticated ? `/${username}` : "/auth"}
         replace={true}
       />
-      <HomeContainer>
-        <Routes>
-          <Route path={`${username}`} element={<Home />} />
-        </Routes>
-      </HomeContainer>
+      {isAuthenticated && (
+        <HomeContainer>
+          <Routes>
+            <Route path={`${username}`} element={<Home />} />
+          </Routes>
+        </HomeContainer>
+      )}
     </>
   );
 };

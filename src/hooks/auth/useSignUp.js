@@ -6,6 +6,7 @@ import {
   COMMON_TEXTS,
   ERROR_TEXTS,
 } from "../../constants/CommonContants";
+import { encryptData } from "../../utils/Encryption";
 
 const initialState = {
   accountCreated: false,
@@ -27,7 +28,7 @@ const useSignUp = ({ getValues, onOptionChange }) => {
       const username = getValues()?.username;
       const fullname = getValues()?.fullname;
       const email = getValues()?.email;
-      const password = getValues()?.password;
+      const password = encryptData(getValues()?.password);
       if (username && fullname && email && password) {
         const payload = {
           username,
