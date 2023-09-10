@@ -1,14 +1,27 @@
+import { ICONS } from "../../../constants/StaticImages";
 import useChats from "../../../hooks/home/useChats";
-import { ChatsWrapper } from "./Chats.styles";
+import ChatInfoBox from "./ChatInfoBox";
+import ChatSearch from "./ChatSearch";
+import {
+  ChatsWrapper,
+  MoreOptionsIcon,
+  ProfileImage,
+  UserFullName,
+  UserInfoHeader,
+} from "./Chats.styles";
 
 const Chats = () => {
   const { fullName, allChats } = useChats();
   return (
     <ChatsWrapper>
-      {fullName}
+      <UserInfoHeader>
+        <ProfileImage src="x.png" alt="" />
+        <UserFullName>{fullName}</UserFullName>
+        <MoreOptionsIcon src={ICONS.menuDots} alt="" />
+      </UserInfoHeader>
+      <ChatSearch />
       {allChats.map((obj) => {
-        console.log(obj);
-        return <></>;
+        return <ChatInfoBox key={obj?.username} {...obj} />;
       })}
     </ChatsWrapper>
   );

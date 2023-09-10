@@ -36,3 +36,19 @@ export const screenSize = () => {
   }
   return screenProps;
 };
+
+export const timeFromNow = (moment, timeAt) => {
+  const msgTS = moment(new Date(timeAt));
+  const currTS = moment(new Date());
+  const diffs = {
+    days: Number(currTS.diff(msgTS, "days")),
+    hours: Number(currTS.diff(msgTS, "hours")),
+    minutes: Number(currTS.diff(msgTS, "minutes")),
+    seconds: Number(currTS.diff(msgTS, "seconds")),
+  };
+  if (diffs.days) return diffs.days + "d";
+  else if (diffs.hours) return diffs.hours + "h";
+  else if (diffs.minutes) return diffs.minutes + "m";
+  else if (diffs.seconds) return diffs.seconds + "s";
+  else return "moments ago";
+};

@@ -30,8 +30,8 @@ const useChats = () => {
         const tAllChats = [];
         res?.chats?.forEach((obj) => {
           const allChatsPayload = {};
-          allChatsPayload.otherUserName = obj?.username;
-          allChatsPayload.otherFullName = obj?.fullName;
+          allChatsPayload.username = obj?.username;
+          allChatsPayload.fullName = obj?.fullName;
           allChatsPayload.lastMsg = { ...obj?.lastMsg };
           tAllChats.push(allChatsPayload);
         });

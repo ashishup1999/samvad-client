@@ -42,6 +42,8 @@ const useLogin = ({ getValues, setAuthState }) => {
         };
         const res = await authenticateUser(payload);
         if (res?.status === "SUCCESS") {
+          localStorage.setItem("isAuthenticated", true);
+          localStorage.setItem("username", username);
           setBasicDetails({
             payload: { username, fullName: res?.fullName },
           });

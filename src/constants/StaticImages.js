@@ -14,6 +14,8 @@ import keyIcon from "/images/key.svg";
 import keyboardIcon from "/images/keyboard.svg";
 import checkCircleIcon from "/images/check-circle.svg";
 import redInfoIcon from "/images/information-fill-red.svg";
+import menuDots from "/images/menu-dots.svg";
+import searchIcon from "/images/search.svg";
 
 export const IMAGES = { samvadLogo };
 
@@ -33,4 +35,6 @@ export const ICONS = {
   keyboardIcon,
   checkCircleIcon,
   redInfoIcon,
+  menuDots,
+  searchIcon,
 };

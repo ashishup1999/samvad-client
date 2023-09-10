@@ -24,6 +24,7 @@ export const COMMON_TEXTS = {
   SAMVAD: "संवाद",
   SUCCESS: "SUCCESS",
   LOGO_FOOTER: "Enjoy Chatting with your beloved ones",
+  SEARCH_CHATS: "Search chats...",
 };
 
 export const ERROR_TEXTS = {

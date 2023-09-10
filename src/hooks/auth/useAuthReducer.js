@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 
 const initialState = {
-  isAuthenticated: false
+  isAuthenticated: localStorage.getItem("isAuthenticated") || false,
 };
 
 const useAuthReducer = () => {
