@@ -19,6 +19,7 @@ export const UserInfoHeader = styled.div`
   background: ${COLORS.BLUE1};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 
 export const ProfileImage = styled.img`
@@ -44,4 +45,5 @@ export const MoreOptionsIcon = styled.img`
   width: auto;
   padding: 3px;
   margin-left: auto;
+  cursor: pointer;
 `;

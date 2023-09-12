@@ -10,18 +10,40 @@ import {
   UserFullName,
 } from "./ChatInfoBox.styles";
 import { timeFromNow } from "../../../utils/CommonUtils";
+import { useContext, useEffect } from "react";
+import { BasicDetailsContext } from "../../../contexts/common/BasicDetailsProvider";
+import { SocketContext } from "../../../contexts/common/SocketProvider";
+import { SOCKET_NAMES } from "../../../constants/CommonContants";
 
-const ChatInfoBox = ({ fullName, lastMsg }) => {
+const ChatInfoBox = ({ chatId, fullName, lastMsg }) => {
+  const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
+  const { selectedChatId } = basicDetails;
+  const { socket } = useContext(SocketContext);
+
+  useEffect(() => {
+    socket.emit(SOCKET_NAMES.JOIN_ROOM, { chatId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const onClickChat = (e) => {
+    const { id } = e.currentTarget;
+    setBasicDetails({ payload: { selectedChatId: id } });
+  };
+
   return (
     <>
-      <ChatInfoWrapper>
+      <ChatInfoWrapper
+        id={chatId}
+        selected={selectedChatId === chatId}
+        onClick={onClickChat}
+      >
         <ProfileImage src="x.png" alt="" />
-        <ChatBriefInfo data-type={lastMsg?.chatId}>
+        <ChatBriefInfo>
           <UserFullName>{fullName}</UserFullName>
-          <LastMessage>{lastMsg?.message}</LastMessage>
+          <LastMessage>{lastMsg?.msg}</LastMessage>
         </ChatBriefInfo>
         <ChatAdditionalInfo>
-          <TimeAgo>{timeFromNow(moment, lastMsg?.createdAt)}</TimeAgo>
+          <TimeAgo>{timeFromNow(moment, lastMsg?.sentAt)}</TimeAgo>
         </ChatAdditionalInfo>
       </ChatInfoWrapper>
     </>
@@ -29,13 +51,13 @@ const ChatInfoBox = ({ fullName, lastMsg }) => {
 };
 
 ChatInfoBox.propTypes = {
-  username: PropTypes.string.isRequired,
+  chatId: PropTypes.string.isRequired,
   fullName: PropTypes.string.isRequired,
   lastMsg: PropTypes.shape({
-    message: PropTypes.string.isRequired,
-    chatId: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
+    msg: PropTypes.string.isRequired,
+    sentAt: PropTypes.string.isRequired,
   }),
+  updateLatestChat: PropTypes.func.isRequired,
 };
 
 export default ChatInfoBox;

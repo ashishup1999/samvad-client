@@ -7,5 +7,6 @@ export default {
   VERIFY_OTP: `${API_BASE_URL}/verifyOtp`,
   CHANGE_PASSWORD: `${API_BASE_URL}/updatePassword`,
   GET_ALL_CHATS: `${API_BASE_URL}/getAllChats`,
-  GET_USER_INFO: `${API_BASE_URL}/getUserInfo`
+  GET_USER_INFO: `${API_BASE_URL}/getUserInfo`,
+  GET_CHAT_INFO_BY_CHAT_ID: `${API_BASE_URL}/getChatInfoByChatId`,
 };

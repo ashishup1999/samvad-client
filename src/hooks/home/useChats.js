@@ -1,26 +1,37 @@
 import { useContext, useEffect, useReducer } from "react";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
-import { COMMON_TEXTS } from "../../constants/CommonContants";
+import { COMMON_TEXTS, SOCKET_NAMES } from "../../constants/CommonContants";
 import { getUserAllChats } from "../../services/home";
+import { SocketContext } from "../../contexts/common/SocketProvider";
 
 const initialState = {
   allChats: [],
 };
 
 const useChats = () => {
-  const { basicDetails } = useContext(BasicDetailsContext);
-  const { username, fullName } = basicDetails;
+  const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
+  const { username, fullName, lastMsgInfo } = basicDetails;
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
   const { allChats } = state;
+  const { socket } = useContext(SocketContext);
 
   useEffect(() => {
     getAllChats();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (lastMsgInfo) updateLatestChat(lastMsgInfo?.chatId, lastMsgInfo?.msgObj);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastMsgInfo]);
+
+  socket.on(SOCKET_NAMES.RECEIVE_MSG, (msgInfo) => {
+    setBasicDetails({ payload: { lastMsgInfo: msgInfo } });
+  });
+
   const allChatsSortComparator = (obj1, obj2) => {
-    return obj1?.lastMsg?.timestamp > obj2?.lastMsg?.timestamp;
+    return obj1?.lastMsg?.sentAt > obj2?.lastMsg?.sentAt;
   };
 
   const getAllChats = async () => {
@@ -32,6 +43,7 @@ const useChats = () => {
           const allChatsPayload = {};
           allChatsPayload.username = obj?.username;
           allChatsPayload.fullName = obj?.fullName;
+          allChatsPayload.chatId = obj?.chatId;
           allChatsPayload.lastMsg = { ...obj?.lastMsg };
           tAllChats.push(allChatsPayload);
         });
@@ -43,6 +55,20 @@ const useChats = () => {
     } catch {
       //TODO Error screen
     }
+  };
+
+  const updateLatestChat = (chatId, lastMsg) => {
+    let tempObj;
+    let tempAllChats = [];
+    allChats.forEach((obj) => {
+      if (obj?.chatId === chatId) {
+        tempObj = obj;
+      } else {
+        tempAllChats.push(obj);
+      }
+    });
+    tempAllChats.unshift({ ...tempObj, lastMsg });
+    dispatch({ payload: { allChats: tempAllChats } });
   };
 
   return { fullName, allChats };

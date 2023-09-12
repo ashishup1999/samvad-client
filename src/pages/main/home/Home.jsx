@@ -16,26 +16,40 @@ import {
   MobileLogoHeader,
 } from "../../auth/index.styles";
 import Chats from "./Chats";
+import { BasicDetailsContext } from "../../../contexts/common/BasicDetailsProvider";
+import ChatScreen from "./chat/ChatScreen";
 
 const Home = () => {
+  const { basicDetails } = useContext(BasicDetailsContext);
+  const { selectedChatId } = basicDetails;
   const { mobileMax, tabletMax } = useContext(ScreenSizeContext);
+  const ChatScreenComp = <ChatScreen />;
+
   return (
     <HomeWrapper mobilewidth={mobileMax} tabletwidth={tabletMax}>
       <LeftContainer mobilewidth={mobileMax} tabletwidth={tabletMax}>
-        {(mobileMax || tabletMax) && (
+        {(mobileMax || tabletMax) && !selectedChatId && (
           <MobileLogoDiv>
             <MobileLogoHeader>{COMMON_TEXTS.SAMVAD}</MobileLogoHeader>
             <MobileLogo src={IMAGES.samvadLogo} />
           </MobileLogoDiv>
         )}
-        <Chats />
+        {(mobileMax || tabletMax) && selectedChatId ? (
+          ChatScreenComp
+        ) : (
+          <Chats />
+        )}
       </LeftContainer>
       {!(mobileMax || tabletMax) && (
         <RightContainer>
-          <LogoWrapper>
-            <LogoImage src={IMAGES.samvadLogo} />
-            <LogoFooterText>{COMMON_TEXTS.LOGO_FOOTER}</LogoFooterText>
-          </LogoWrapper>
+          {selectedChatId ? (
+            ChatScreenComp
+          ) : (
+            <LogoWrapper>
+              <LogoImage src={IMAGES.samvadLogo} />
+              <LogoFooterText>{COMMON_TEXTS.LOGO_FOOTER}</LogoFooterText>
+            </LogoWrapper>
+          )}
         </RightContainer>
       )}
     </HomeWrapper>

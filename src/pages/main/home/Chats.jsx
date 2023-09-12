@@ -21,7 +21,7 @@ const Chats = () => {
       </UserInfoHeader>
       <ChatSearch />
       {allChats.map((obj) => {
-        return <ChatInfoBox key={obj?.username} {...obj} />;
+        return <ChatInfoBox key={obj?.chatId} {...obj} />;
       })}
     </ChatsWrapper>
   );

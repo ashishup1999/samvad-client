@@ -16,6 +16,8 @@ import checkCircleIcon from "/images/check-circle.svg";
 import redInfoIcon from "/images/information-fill-red.svg";
 import menuDots from "/images/menu-dots.svg";
 import searchIcon from "/images/search.svg";
+import sendIconWhite from "/images/send_icon_white.svg";
+import backIconWhite from "/images/back_white_icon.svg";
 
 export const IMAGES = { samvadLogo };
 
@@ -37,4 +39,6 @@ export const ICONS = {
   redInfoIcon,
   menuDots,
   searchIcon,
+  sendIconWhite,
+  backIconWhite,
 };

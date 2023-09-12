@@ -26,15 +26,15 @@ const useSignUp = ({ getValues, onOptionChange }) => {
   const onSignUp = async () => {
     try {
       const username = getValues()?.username;
-      const fullname = getValues()?.fullname;
+      const fullName = getValues()?.fullname;
       const email = getValues()?.email;
       const password = encryptData(getValues()?.password);
-      if (username && fullname && email && password) {
+      if (username && fullName && email && password) {
         const payload = {
           username,
           email,
           password,
-          fullname,
+          fullName,
         };
         const res = await signUpUser(payload);
         if (res?.status === COMMON_TEXTS.SUCCESS && res?.responseCd === "0") {

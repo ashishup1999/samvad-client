@@ -9,6 +9,8 @@ const initialState = {
   username: localStorage.getItem("username") || "",
   fullName: "",
   email: "",
+  selectedChatId: "",
+  lastMsgInfo: null,
 };
 
 const BasicDetailsProvider = ({ children }) => {
