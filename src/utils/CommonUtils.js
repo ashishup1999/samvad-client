@@ -50,5 +50,15 @@ export const timeFromNow = (moment, timeAt) => {
   else if (diffs.hours) return diffs.hours + "h";
   else if (diffs.minutes) return diffs.minutes + "m";
   else if (diffs.seconds) return diffs.seconds + "s";
-  else return "moments ago";
+  else return "";
+};
+
+export const debounce = (func, timeout = 1000) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
 };

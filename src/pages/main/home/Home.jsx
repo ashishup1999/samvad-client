@@ -1,7 +1,9 @@
 import { useContext } from "react";
+import { Else, If, Then } from "react-if";
 import { COMMON_TEXTS } from "../../../constants/CommonContants";
-import { IMAGES } from "../../../constants/StaticImages";
+import { ICONS, IMAGES } from "../../../constants/StaticImages";
 import {
+  CreateChatButton,
   HomeWrapper,
   LeftContainer,
   LogoFooterText,
@@ -18,27 +20,49 @@ import {
 import Chats from "./Chats";
 import { BasicDetailsContext } from "../../../contexts/common/BasicDetailsProvider";
 import ChatScreen from "./chat/ChatScreen";
+import SearchNew from "./searchNew/SearchNew";
 
 const Home = () => {
-  const { basicDetails } = useContext(BasicDetailsContext);
-  const { selectedChatId } = basicDetails;
+  const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
+  const { selectedChatId, createSearch } = basicDetails;
   const { mobileMax, tabletMax } = useContext(ScreenSizeContext);
   const ChatScreenComp = <ChatScreen />;
 
   return (
     <HomeWrapper mobilewidth={mobileMax} tabletwidth={tabletMax}>
       <LeftContainer mobilewidth={mobileMax} tabletwidth={tabletMax}>
-        {(mobileMax || tabletMax) && !selectedChatId && (
-          <MobileLogoDiv>
-            <MobileLogoHeader>{COMMON_TEXTS.SAMVAD}</MobileLogoHeader>
-            <MobileLogo src={IMAGES.samvadLogo} />
-          </MobileLogoDiv>
-        )}
-        {(mobileMax || tabletMax) && selectedChatId ? (
-          ChatScreenComp
-        ) : (
-          <Chats />
-        )}
+        <If condition={createSearch}>
+          <Then>
+            <SearchNew />
+          </Then>
+          <Else>
+            <If condition={mobileMax || tabletMax}>
+              <Then>
+                <If condition={selectedChatId}>
+                  <Then>{ChatScreenComp}</Then>
+                  <Else>
+                    <MobileLogoDiv>
+                      <MobileLogoHeader>{COMMON_TEXTS.SAMVAD}</MobileLogoHeader>
+                      <MobileLogo src={IMAGES.samvadLogo} />
+                    </MobileLogoDiv>
+                  </Else>
+                </If>
+              </Then>
+            </If>
+            <If condition={!((mobileMax || tabletMax) && selectedChatId)}>
+              <Then>
+                <Chats />
+                <CreateChatButton
+                  src={ICONS.plusIconWhite}
+                  alt=""
+                  onClick={() =>
+                    setBasicDetails({ payload: { createSearch: true } })
+                  }
+                />
+              </Then>
+            </If>
+          </Else>
+        </If>
       </LeftContainer>
       {!(mobileMax || tabletMax) && (
         <RightContainer>

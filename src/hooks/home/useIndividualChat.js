@@ -48,12 +48,13 @@ const useIndividualChats = () => {
         msgId: uuidv4(),
         msg: typedMsg,
         sender: username,
-        sentAt: new Date(),
+        sentAt: Date.now(),
       };
-      console.log(selectedChatId);
       socket.emit(SOCKET_NAMES.SEND_MSG, { chatId: selectedChatId, msgObj });
       dispatch({ payload: { msgs: [msgObj, ...msgs], typedMsg: "" } });
-      setBasicDetails({ payload: { lastMsgObj: msgObj } });
+      setBasicDetails({
+        payload: { lastMsgInfo: { chatId: selectedChatId, msgObj } },
+      });
     } catch (error) {
       //error condition to be added
     }
@@ -68,7 +69,21 @@ const useIndividualChats = () => {
     setBasicDetails({ payload: { selectedChatId: null } });
   };
 
-  return { otherUserInfo, msgs, typedMsg, onTyping, sendMessage, onBackClick };
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  };
+
+  return {
+    otherUserInfo,
+    msgs,
+    typedMsg,
+    onTyping,
+    sendMessage,
+    onBackClick,
+    onKeyDown,
+  };
 };
 
 export default useIndividualChats;

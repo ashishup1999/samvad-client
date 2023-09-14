@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
-import { COLORS } from "../../../constants/CommonContants";
+import { COLORS } from "../../../../constants/CommonContants";
 
-export const ChatSearchWrapper = styled.div`
+export const PeopleSearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,14 +52,60 @@ export const InputField = styled.input`
 export const SearchOptionWrappper = styled.div`
   display: flex;
   align-items: center;
+  height: 70px;
   width: 100%;
-  height: 80px;
+  padding: 10px 20px;
+  border: 1px solid ${COLORS.BLUE1};
+  background: ${COLORS.WHITE1};
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  margin-bottom: 10px;
 `;
-
 
 export const SearchOption = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 20px;
+  height: 100%;
+`;
+
+export const CreateChatButton = styled.img`
+  display: flex;
+  height: 35px;
+  width: auto;
+  padding: 5px;
+  margin-left: auto;
+  cursor: pointer;
+  background: ${COLORS.BLUE1};
+  border-radius: 50px;
+`;
+
+export const ProfileImage = styled.img`
+  display: flex;
+  height: 45px;
+  width: 45px;
+  border-radius: 50px;
+  margin-right: 15px;
+  background: ${COLORS.BLUE1};
+`;
+
+export const UserFullName = styled.p`
+  display: flex;
+  font-size: 18px;
+  font-family: "roboto-smvd-medium";
+  color: ${COLORS.BLUE1};
+`;
+
+export const BackToChatButton = styled.img`
+  display: flex;
+  height: 45px;
+  width: auto;
+  padding: 10px;
+  margin: 0 20px 30px auto;
+  cursor: pointer;
+  background: ${COLORS.BLUE1};
+  border-radius: 50px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;

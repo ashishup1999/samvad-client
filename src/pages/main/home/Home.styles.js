@@ -26,6 +26,7 @@ export const LeftContainer = styled.div`
   border-radius: 10px;
   padding: ${(props) => (props.mobilewidth ? "0 10px" : "20px")};
   background-color: ${COLORS.WHITE1};
+  position: relative;
 `;
 
 export const RightContainer = styled.div`
@@ -49,7 +50,7 @@ export const LogoWrapper = styled.div`
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   background: ${COLORS.BLUE1};
-`
+`;
 
 export const LogoImage = styled.img`
   width: 300px;
@@ -61,4 +62,18 @@ export const LogoFooterText = styled.p`
   font-weight: 800;
   letter-spacing: 1px;
   color: ${COLORS.WHITE1};
+`;
+
+export const CreateChatButton = styled.img`
+  display: flex;
+  height: 45px;
+  width: auto;
+  padding: 10px;
+  margin: 0 20px 30px auto;
+  cursor: pointer;
+  background: ${COLORS.BLUE1};
+  border-radius: 50px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;

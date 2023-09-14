@@ -41,11 +41,14 @@ export const UserFullName = styled.p`
 `;
 
 export const LastMessage = styled.p`
-  display: flex;
   font-size: 14px;
   color: ${COLORS.BLACK1};
   margin-left: 1px;
-  font-weight: 800;
+  font-family: "roboto-smvd-medium";
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ChatAdditionalInfo = styled.div`

@@ -14,3 +14,13 @@ export const getChatInfoByChatId = async (username, chatId) => {
     `${APIConstants.GET_CHAT_INFO_BY_CHAT_ID}/${username}?chatId=${chatId}`
   );
 };
+
+export const getUsersOnSearch = async (username, searchKey) => {
+  return ajaxApi.get(
+    `${APIConstants.GET_USER_ON_SEARCH}/${username}?search=${searchKey}`
+  );
+};
+
+export const createChat = async (payload) => {
+  return ajaxApi.post(`${APIConstants.CREATE_CHAT}`, payload);
+};

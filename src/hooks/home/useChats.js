@@ -2,7 +2,7 @@ import { useContext, useEffect, useReducer } from "react";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
 import { COMMON_TEXTS, SOCKET_NAMES } from "../../constants/CommonContants";
-import { getUserAllChats } from "../../services/home";
+import { getChatInfoByChatId, getUserAllChats } from "../../services/home";
 import { SocketContext } from "../../contexts/common/SocketProvider";
 
 const initialState = {
@@ -57,16 +57,25 @@ const useChats = () => {
     }
   };
 
-  const updateLatestChat = (chatId, lastMsg) => {
+  const updateLatestChat = async (chatId, lastMsg) => {
     let tempObj;
     let tempAllChats = [];
-    allChats.forEach((obj) => {
-      if (obj?.chatId === chatId) {
-        tempObj = obj;
-      } else {
-        tempAllChats.push(obj);
-      }
-    });
+    const { users } = await getChatInfoByChatId(username, chatId);
+    const doesChatExists = allChats.filter(
+      (obj) => users[0]?.username === obj.username
+    )?.[0];
+    if (doesChatExists) {
+      allChats.forEach((obj) => {
+        if (obj?.chatId === chatId) {
+          tempObj = obj;
+        } else {
+          tempAllChats.push(obj);
+        }
+      });
+    } else {
+      tempObj = { chatId, ...users[0], lastMsg };
+      tempAllChats = [...allChats];
+    }
     tempAllChats.unshift({ ...tempObj, lastMsg });
     dispatch({ payload: { allChats: tempAllChats } });
   };

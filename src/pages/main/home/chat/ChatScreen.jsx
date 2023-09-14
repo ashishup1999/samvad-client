@@ -24,8 +24,15 @@ const ChatScreen = () => {
   const { mobileMax, tabletMax } = useContext(ScreenSizeContext);
   const { basicDetails } = useContext(BasicDetailsContext);
   const { selectedChatId, username } = basicDetails;
-  const { otherUserInfo, msgs, typedMsg, onTyping, sendMessage, onBackClick } =
-    useIndividualChats();
+  const {
+    otherUserInfo,
+    msgs,
+    typedMsg,
+    onTyping,
+    sendMessage,
+    onBackClick,
+    onKeyDown,
+  } = useIndividualChats();
 
   return (
     <>
@@ -54,6 +61,7 @@ const ChatScreen = () => {
               placeholder={COMMON_TEXTS.TYPING_SOMETHING_TEXT}
               value={typedMsg}
               onChange={onTyping}
+              onKeyDown={onKeyDown}
             />
             <SendIcon src={ICONS.sendIconWhite} onClick={sendMessage} />
           </SendBoxContainer>

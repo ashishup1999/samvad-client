@@ -18,6 +18,7 @@ import menuDots from "/images/menu-dots.svg";
 import searchIcon from "/images/search.svg";
 import sendIconWhite from "/images/send_icon_white.svg";
 import backIconWhite from "/images/back_white_icon.svg";
+import plusIconWhite from "/images/plus_white.svg";
 
 export const IMAGES = { samvadLogo };
 
@@ -41,4 +42,5 @@ export const ICONS = {
   searchIcon,
   sendIconWhite,
   backIconWhite,
+  plusIconWhite,
 };

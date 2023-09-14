@@ -11,6 +11,7 @@ const initialState = {
   email: "",
   selectedChatId: "",
   lastMsgInfo: null,
+  createSearch: false,
 };
 
 const BasicDetailsProvider = ({ children }) => {

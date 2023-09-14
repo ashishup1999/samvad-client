@@ -26,6 +26,7 @@ export const COMMON_TEXTS = {
   LOGO_FOOTER: "Enjoy Chatting with your beloved ones",
   SEARCH_CHATS: "Search chats...",
   TYPING_SOMETHING_TEXT: "Type something...",
+  SEARCH_PEOPLE: "Search people...",
 };
 
 export const ERROR_TEXTS = {

@@ -9,4 +9,6 @@ export default {
   GET_ALL_CHATS: `${API_BASE_URL}/getAllChats`,
   GET_USER_INFO: `${API_BASE_URL}/getUserInfo`,
   GET_CHAT_INFO_BY_CHAT_ID: `${API_BASE_URL}/getChatInfoByChatId`,
+  GET_USER_ON_SEARCH: `${API_BASE_URL}/getUsersOnSearch`,
+  CREATE_CHAT: `${API_BASE_URL}/createChat`,
 };
