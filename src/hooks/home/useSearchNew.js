@@ -52,7 +52,11 @@ const useSearchNew = () => {
       const res = await createChat({ usernames: [username, id] });
       if (res?.status === COMMON_TEXTS.SUCCESS) {
         setBasicDetails({
-          payload: { selectedChatId: res?.chatId, createSearch: false },
+          payload: {
+            selectedChatId: res?.chatId,
+            createSearch: false,
+            isSelectedChatNew: true,
+          },
         });
       } else {
         throw res;

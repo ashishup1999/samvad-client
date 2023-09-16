@@ -38,8 +38,8 @@ export const screenSize = () => {
 };
 
 export const timeFromNow = (moment, timeAt) => {
-  const msgTS = moment(new Date(timeAt));
-  const currTS = moment(new Date());
+  const msgTS = moment(timeAt);
+  const currTS = moment();
   const diffs = {
     days: Number(currTS.diff(msgTS, "days")),
     hours: Number(currTS.diff(msgTS, "hours")),

@@ -5,6 +5,7 @@ import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider"
 import { getChatInfoByChatId } from "../../services/home";
 import { SocketContext } from "../../contexts/common/SocketProvider";
 import { SOCKET_NAMES } from "../../constants/CommonContants";
+import moment from "moment/moment";
 
 const initialState = {
   otherUserInfo: null,
@@ -16,7 +17,7 @@ const useIndividualChats = () => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
   const { otherUserInfo, msgs, typedMsg } = state;
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
-  const { username, selectedChatId } = basicDetails;
+  const { username, selectedChatId, isSelectedChatNew } = basicDetails;
   const { socket } = useContext(SocketContext);
 
   useEffect(() => {
@@ -30,7 +31,9 @@ const useIndividualChats = () => {
         username,
         selectedChatId
       );
-      dispatch({ payload: { otherUserInfo: users[0], msgs: msgs.reverse() } });
+      dispatch({
+        payload: { otherUserInfo: users[0], msgs: msgs.reverse() },
+      });
     } catch {
       //add error
     }
@@ -48,13 +51,15 @@ const useIndividualChats = () => {
         msgId: uuidv4(),
         msg: typedMsg,
         sender: username,
-        sentAt: Date.now(),
+        sentAt: moment().valueOf(),
       };
-      socket.emit(SOCKET_NAMES.SEND_MSG, { chatId: selectedChatId, msgObj });
-      dispatch({ payload: { msgs: [msgObj, ...msgs], typedMsg: "" } });
-      setBasicDetails({
-        payload: { lastMsgInfo: { chatId: selectedChatId, msgObj } },
+      socket.emit(SOCKET_NAMES.SEND_MSG, {
+        chatId: selectedChatId,
+        msgObj,
+        isSelectedChatNew,
       });
+      dispatch({ payload: { msgs: [msgObj, ...msgs], typedMsg: "" } });
+      setBasicDetails({ payload: { msgsUpdated: true } });
     } catch (error) {
       //error condition to be added
     }
@@ -62,7 +67,7 @@ const useIndividualChats = () => {
 
   socket.on(SOCKET_NAMES.RECEIVE_MSG, (msgInfo) => {
     dispatch({ payload: { msgs: [msgInfo?.msgObj, ...msgs], typedMsg: "" } });
-    setBasicDetails({ payload: { lastMsgInfo: msgInfo } });
+    setBasicDetails({ payload: { msgsUpdated: true } });
   });
 
   const onBackClick = () => {

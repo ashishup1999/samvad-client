@@ -10,8 +10,9 @@ const initialState = {
   fullName: "",
   email: "",
   selectedChatId: "",
-  lastMsgInfo: null,
+  msgsUpdated:false,
   createSearch: false,
+  isSelectedChatNew: false,
 };
 
 const BasicDetailsProvider = ({ children }) => {

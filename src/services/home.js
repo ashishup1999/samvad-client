@@ -21,6 +21,10 @@ export const getUsersOnSearch = async (username, searchKey) => {
   );
 };
 
+export const getUsernamesByChatId = async (chatId) => {
+  return ajaxApi.get(`${APIConstants.GET_USERNAMES_BY_CHAT_ID}/${chatId}`);
+};
+
 export const createChat = async (payload) => {
   return ajaxApi.post(`${APIConstants.CREATE_CHAT}`, payload);
 };

@@ -43,4 +43,5 @@ export const SOCKET_NAMES = {
   MSG_SEEN: "msg_seen",
   CREATE_ROOM: "create_room",
   JOIN_ROOM: "join_room",
+  NEW_MESSAGE: "new_msg",
 };

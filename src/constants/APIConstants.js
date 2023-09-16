@@ -11,4 +11,5 @@ export default {
   GET_CHAT_INFO_BY_CHAT_ID: `${API_BASE_URL}/getChatInfoByChatId`,
   GET_USER_ON_SEARCH: `${API_BASE_URL}/getUsersOnSearch`,
   CREATE_CHAT: `${API_BASE_URL}/createChat`,
+  GET_USERNAMES_BY_CHAT_ID: `${API_BASE_URL}/getUsernamesByChatId`,
 };

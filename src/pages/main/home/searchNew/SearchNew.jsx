@@ -28,7 +28,7 @@ const SearchNew = () => {
       <PeopleSearchWrapper>
         <InputWrapper>
           <InputField
-            placeholder={COMMON_TEXTS.SEARCH_CHATS}
+            placeholder={COMMON_TEXTS.SEARCH_PEOPLE}
             value={searchValue}
             onChange={onChange}
             onKeyUp={onSearch}

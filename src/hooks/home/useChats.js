@@ -2,7 +2,7 @@ import { useContext, useEffect, useReducer } from "react";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
 import { COMMON_TEXTS, SOCKET_NAMES } from "../../constants/CommonContants";
-import { getChatInfoByChatId, getUserAllChats } from "../../services/home";
+import { getUserAllChats, getUsernamesByChatId } from "../../services/home";
 import { SocketContext } from "../../contexts/common/SocketProvider";
 
 const initialState = {
@@ -11,7 +11,7 @@ const initialState = {
 
 const useChats = () => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
-  const { username, fullName, lastMsgInfo } = basicDetails;
+  const { username, fullName, msgsUpdated } = basicDetails;
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
   const { allChats } = state;
   const { socket } = useContext(SocketContext);
@@ -22,12 +22,22 @@ const useChats = () => {
   }, []);
 
   useEffect(() => {
-    if (lastMsgInfo) updateLatestChat(lastMsgInfo?.chatId, lastMsgInfo?.msgObj);
+    if (msgsUpdated) getAllChats();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lastMsgInfo]);
+  }, [msgsUpdated]);
 
-  socket.on(SOCKET_NAMES.RECEIVE_MSG, (msgInfo) => {
-    setBasicDetails({ payload: { lastMsgInfo: msgInfo } });
+  socket.on(SOCKET_NAMES.RECEIVE_MSG, () => {
+    setBasicDetails({ payload: { msgsUpdated: true } });
+  });
+
+  socket.on(SOCKET_NAMES.NEW_MESSAGE, async (chatId) => {
+    const { usernames } = await getUsernamesByChatId(chatId);
+    if (usernames.includes(username)) {
+      socket.emit(SOCKET_NAMES.JOIN_ROOM, { chatId });
+      setBasicDetails({
+        payload: { msgsUpdated: true, isSelectedChatNew: false },
+      });
+    }
   });
 
   const allChatsSortComparator = (obj1, obj2) => {
@@ -49,35 +59,13 @@ const useChats = () => {
         });
         tAllChats.sort(allChatsSortComparator);
         dispatch({ payload: { allChats: tAllChats } });
+        setBasicDetails({ payload: { msgsUpdated: false } });
       } else {
         throw res;
       }
     } catch {
       //TODO Error screen
     }
-  };
-
-  const updateLatestChat = async (chatId, lastMsg) => {
-    let tempObj;
-    let tempAllChats = [];
-    const { users } = await getChatInfoByChatId(username, chatId);
-    const doesChatExists = allChats.filter(
-      (obj) => users[0]?.username === obj.username
-    )?.[0];
-    if (doesChatExists) {
-      allChats.forEach((obj) => {
-        if (obj?.chatId === chatId) {
-          tempObj = obj;
-        } else {
-          tempAllChats.push(obj);
-        }
-      });
-    } else {
-      tempObj = { chatId, ...users[0], lastMsg };
-      tempAllChats = [...allChats];
-    }
-    tempAllChats.unshift({ ...tempObj, lastMsg });
-    dispatch({ payload: { allChats: tempAllChats } });
   };
 
   return { fullName, allChats };
