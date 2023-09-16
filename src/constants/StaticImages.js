@@ -19,6 +19,7 @@ import searchIcon from "/images/search.svg";
 import sendIconWhite from "/images/send_icon_white.svg";
 import backIconWhite from "/images/back_white_icon.svg";
 import plusIconWhite from "/images/plus_white.svg";
+import settingsWhite from "/images/settings_white.svg";
 
 export const IMAGES = { samvadLogo };
 
@@ -43,4 +44,5 @@ export const ICONS = {
   sendIconWhite,
   backIconWhite,
   plusIconWhite,
+  settingsWhite,
 };

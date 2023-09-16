@@ -1,7 +1,11 @@
 import { useContext, useEffect, useReducer } from "react";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
-import { COMMON_TEXTS, SOCKET_NAMES } from "../../constants/CommonConstants";
+import {
+  COMMON_TEXTS,
+  SCREENS,
+  SOCKET_NAMES,
+} from "../../constants/CommonConstants";
 import { getUserAllChats, getUsernamesByChatId } from "../../services/home";
 import { SocketContext } from "../../contexts/common/SocketProvider";
 
@@ -68,7 +72,11 @@ const useChats = () => {
     }
   };
 
-  return { fullName, allChats };
+  const onSettingsClick = () => {
+    setBasicDetails({ payload: { currentLeftScreen: SCREENS.SETTINGS } });
+  };
+
+  return { fullName, allChats, onSettingsClick };
 };
 
 export default useChats;

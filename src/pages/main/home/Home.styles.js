@@ -24,7 +24,8 @@ export const LeftContainer = styled.div`
   height: 100%;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  padding: ${(props) => (props.mobilewidth ? "0 10px" : "20px")};
+  padding: ${(props) =>
+    props.mobilewidth || props.tabletwidth ? "15px 10px 0" : "20px"};
   background-color: ${COLORS.WHITE1};
   position: relative;
 `;

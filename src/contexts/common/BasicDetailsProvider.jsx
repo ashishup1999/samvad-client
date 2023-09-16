@@ -2,6 +2,7 @@ import { createContext, useEffect, useReducer } from "react";
 import PropTypes from "prop-types";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { getUserInfo } from "../../services/home";
+import { SCREENS } from "../../constants/CommonConstants";
 
 export const BasicDetailsContext = createContext();
 
@@ -13,7 +14,7 @@ const initialState = {
   msgsUpdated: false,
   createSearch: false,
   isSelectedChatNew: false,
-  currentLeftScreen: "chats",
+  currentLeftScreen: SCREENS.CHATS,
 };
 
 const BasicDetailsProvider = ({ children }) => {

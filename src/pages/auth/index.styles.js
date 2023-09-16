@@ -125,7 +125,7 @@ export const MobileLogoDiv = styled.div`
   width: 100%;
   padding: 10px 20px;
   border-radius: 10px;
-  margin: 20px 0;
+  margin: 0 0 20px;
   background: ${COLORS.BLUE1};
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
 `;

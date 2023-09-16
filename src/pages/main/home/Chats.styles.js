@@ -41,7 +41,7 @@ export const UserFullName = styled.p`
 
 export const MoreOptionsIcon = styled.img`
   display: flex;
-  height: 35px;
+  height: 32px;
   width: auto;
   padding: 3px;
   margin-left: auto;

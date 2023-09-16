@@ -2,7 +2,7 @@ import { useContext, useReducer } from "react";
 import { debounce, defaultStateReducer } from "../../utils/CommonUtils";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
 import { createChat, getUsersOnSearch } from "../../services/home";
-import { COMMON_TEXTS } from "../../constants/CommonConstants";
+import { COMMON_TEXTS, SCREENS } from "../../constants/CommonConstants";
 
 const initialState = {
   searchValue: "",
@@ -41,7 +41,7 @@ const useSearchNew = () => {
   const onBackToChat = () => {
     setBasicDetails({
       payload: {
-        createSearch: false,
+        currentLeftScreen: SCREENS.ALL_CHATS,
       },
     });
   };
@@ -54,7 +54,7 @@ const useSearchNew = () => {
         setBasicDetails({
           payload: {
             selectedChatId: res?.chatId,
-            createSearch: false,
+            currentLeftScreen: SCREENS.ALL_CHATS,
             isSelectedChatNew: true,
           },
         });

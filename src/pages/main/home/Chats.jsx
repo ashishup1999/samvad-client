@@ -11,13 +11,17 @@ import {
 } from "./Chats.styles";
 
 const Chats = () => {
-  const { fullName, allChats } = useChats();
+  const { fullName, allChats, onSettingsClick } = useChats();
   return (
     <ChatsWrapper>
       <UserInfoHeader>
         <ProfileImage src="x.png" alt="" />
         <UserFullName>{fullName}</UserFullName>
-        <MoreOptionsIcon src={ICONS.menuDots} alt="" />
+        <MoreOptionsIcon
+          src={ICONS.settingsWhite}
+          alt=""
+          onClick={onSettingsClick}
+        />
       </UserInfoHeader>
       <ChatSearch />
       {allChats.map((obj) => {

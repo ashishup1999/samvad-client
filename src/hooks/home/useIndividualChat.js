@@ -21,7 +21,7 @@ const useIndividualChats = () => {
   const { socket } = useContext(SocketContext);
 
   useEffect(() => {
-    setOtherUserInfo();
+    if (selectedChatId) setOtherUserInfo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChatId]);
 
