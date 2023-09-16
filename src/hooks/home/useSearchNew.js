@@ -2,7 +2,7 @@ import { useContext, useReducer } from "react";
 import { debounce, defaultStateReducer } from "../../utils/CommonUtils";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
 import { createChat, getUsersOnSearch } from "../../services/home";
-import { COMMON_TEXTS } from "../../constants/CommonContants";
+import { COMMON_TEXTS } from "../../constants/CommonConstants";
 
 const initialState = {
   searchValue: "",

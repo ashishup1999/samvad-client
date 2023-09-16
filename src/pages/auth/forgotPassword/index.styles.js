@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { COLORS } from "../../../constants/CommonContants";
+import { COLORS } from "../../../constants/CommonConstants";
 import { Link } from "react-router-dom";
 
 export const SuffixIcon = styled.img`
@@ -62,4 +62,4 @@ export const GoToLoginLink = styled(Link)`
   color: ${COLORS.WHITE1};
   font-family: "roboto-smvd-medium";
   text-decoration: none;
-`
+`;

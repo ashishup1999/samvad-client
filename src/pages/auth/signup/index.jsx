@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import Divider from "../../../components/Divider";
 import Input from "../../../components/Input";
-import { COLORS } from "../../../constants/CommonContants";
+import { COLORS } from "../../../constants/CommonConstants";
 import { ICONS } from "../../../constants/StaticImages";
 import {
   Button,

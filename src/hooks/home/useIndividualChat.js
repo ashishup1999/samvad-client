@@ -4,7 +4,7 @@ import { defaultStateReducer } from "../../utils/CommonUtils";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
 import { getChatInfoByChatId } from "../../services/home";
 import { SocketContext } from "../../contexts/common/SocketProvider";
-import { SOCKET_NAMES } from "../../constants/CommonContants";
+import { SOCKET_NAMES } from "../../constants/CommonConstants";
 import moment from "moment/moment";
 
 const initialState = {

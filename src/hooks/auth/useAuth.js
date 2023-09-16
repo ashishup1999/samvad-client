@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { defaultStateReducer } from "../../utils/CommonUtils";
-import { AUTH_TYPE } from "../../constants/CommonContants";
+import { AUTH_TYPE } from "../../constants/CommonConstants";
 
 const initialState = {
   authOption: AUTH_TYPE.login,

@@ -15,7 +15,7 @@ import Input from "../../../components/Input";
 import { useContext } from "react";
 import { MobileLogo, MobileLogoDiv, MobileLogoHeader } from "../index.styles";
 import { ScreenSizeContext } from "../../../contexts/common/ScreenSizeProvider";
-import { COMMON_TEXTS } from "../../../constants/CommonContants";
+import { COMMON_TEXTS } from "../../../constants/CommonConstants";
 
 const ForgotPasswordForm = () => {
   const formMethods = useForm({ mode: "all" });

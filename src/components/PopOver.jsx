@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { COLORS } from "../constants/CommonContants";
+import { COLORS } from "../constants/CommonConstants";
 import { styled } from "styled-components";
 import { useEffect, useRef, useState } from "react";
 

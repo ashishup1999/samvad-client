@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { COLORS } from "../../../constants/CommonContants";
+import { COLORS } from "../../../constants/CommonConstants";
 
 export const ChatSearchWrapper = styled.div`
   display: flex;
@@ -55,7 +55,6 @@ export const SearchOptionWrappper = styled.div`
   width: 100%;
   height: 80px;
 `;
-
 
 export const SearchOption = styled.div`
   display: flex;

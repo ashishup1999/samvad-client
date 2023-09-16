@@ -13,7 +13,7 @@ import { timeFromNow } from "../../../utils/CommonUtils";
 import { useContext, useEffect } from "react";
 import { BasicDetailsContext } from "../../../contexts/common/BasicDetailsProvider";
 import { SocketContext } from "../../../contexts/common/SocketProvider";
-import { SOCKET_NAMES } from "../../../constants/CommonContants";
+import { SOCKET_NAMES } from "../../../constants/CommonConstants";
 
 const ChatInfoBox = ({ chatId, fullName, lastMsg }) => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);

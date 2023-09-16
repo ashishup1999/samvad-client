@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { COLORS } from "../../../constants/CommonContants";
+import { COLORS } from "../../../constants/CommonConstants";
 
 export const SuffixIcon = styled.img`
   height: 100%;
@@ -11,7 +11,6 @@ export const PrefixIcon = styled.img`
   height: 100%;
   padding: 4px;
 `;
-
 
 export const Button = styled.button`
   height: 50px;

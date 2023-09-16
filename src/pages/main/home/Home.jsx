@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Else, If, Then } from "react-if";
-import { COMMON_TEXTS } from "../../../constants/CommonContants";
+import { COMMON_TEXTS } from "../../../constants/CommonConstants";
 import { ICONS, IMAGES } from "../../../constants/StaticImages";
 import {
   CreateChatButton,

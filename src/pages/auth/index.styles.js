@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { AUTH_TYPE, COLORS } from "../../constants/CommonContants";
+import { AUTH_TYPE, COLORS } from "../../constants/CommonConstants";
 
 export const LeftBg = styled.div`
   display: flex;

@@ -10,9 +10,10 @@ const initialState = {
   fullName: "",
   email: "",
   selectedChatId: "",
-  msgsUpdated:false,
+  msgsUpdated: false,
   createSearch: false,
   isSelectedChatNew: false,
+  currentLeftScreen: "chats",
 };
 
 const BasicDetailsProvider = ({ children }) => {

@@ -17,7 +17,7 @@ import {
 } from "./ChatScreen.styles";
 import useIndividualChats from "../../../../hooks/home/useIndividualChat";
 import { ICONS } from "../../../../constants/StaticImages";
-import { COMMON_TEXTS } from "../../../../constants/CommonContants";
+import { COMMON_TEXTS } from "../../../../constants/CommonConstants";
 import { ScreenSizeContext } from "../../../../contexts/common/ScreenSizeProvider";
 
 const ChatScreen = () => {

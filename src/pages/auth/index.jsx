@@ -14,7 +14,7 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth/AuthProvider";
 import { ScreenSizeContext } from "../../contexts/common/ScreenSizeProvider";
-import { COMMON_TEXTS } from "../../constants/CommonContants";
+import { COMMON_TEXTS } from "../../constants/CommonConstants";
 
 const Auth = () => {
   const { authState } = useContext(AuthContext);

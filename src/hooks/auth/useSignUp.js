@@ -5,7 +5,7 @@ import {
   AUTH_TYPE,
   COMMON_TEXTS,
   ERROR_TEXTS,
-} from "../../constants/CommonContants";
+} from "../../constants/CommonConstants";
 import { encryptData } from "../../utils/Encryption";
 
 const initialState = {

@@ -12,7 +12,7 @@ import {
 import { ScreenSizeContext } from "../../contexts/common/ScreenSizeProvider";
 import { useContext } from "react";
 import { IMAGES } from "../../constants/StaticImages";
-import { AUTH_TYPE, COMMON_TEXTS } from "../../constants/CommonContants";
+import { AUTH_TYPE, COMMON_TEXTS } from "../../constants/CommonConstants";
 
 const AuthOptions = (props) => {
   const { authOption, animateFormOption, onOptionChange = () => {} } = props;

@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { COLORS } from "../../../constants/CommonContants";
+import { COLORS } from "../../../constants/CommonConstants";
 
 export const HomeWrapper = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { COLORS } from "../../../constants/CommonContants";
+import { COLORS } from "../../../constants/CommonConstants";
 import { Link } from "react-router-dom";
 
 export const SuffixIcon = styled.img`

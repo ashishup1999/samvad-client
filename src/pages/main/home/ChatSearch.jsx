@@ -1,4 +1,4 @@
-import { COMMON_TEXTS } from "../../../constants/CommonContants";
+import { COMMON_TEXTS } from "../../../constants/CommonConstants";
 import { ICONS } from "../../../constants/StaticImages";
 import {
   ChatSearchWrapper,
