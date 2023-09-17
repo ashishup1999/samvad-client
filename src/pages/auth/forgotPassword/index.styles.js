@@ -14,17 +14,20 @@ export const PrefixIcon = styled.img`
 `;
 
 export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 50px;
-  min-height: 55px;
-  min-width: 50%;
-  border: none;
-  background-color: ${COLORS.BLUE1};
-  color: ${COLORS.WHITE1};
+  width: 250px;
+  padding: 10px 20px;
+  background-color: ${(props) => props.bgcolor || COLORS.BLUE1};
+  color: ${(props) => props.textcolor || COLORS.WHITE1};
+  font-size: 18px;
   font-family: "roboto-smvd-medium";
-  font-size: 1.2em;
-  border-radius: 10px;
-  padding: 0 20px;
-  margin: 15px 0px;
+  border-radius: 20px;
+  border: 1px solid ${(props) => props.borderclr || COLORS.BLUE1};
+  margin: 10px 0px;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 `;
 

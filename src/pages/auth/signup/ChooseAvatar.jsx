@@ -18,6 +18,8 @@ const ChooseAvatar = ({
   selectedAvatar,
   onUserCheckClick,
   onAvatarSelection,
+  isClosable,
+  closeModal,
 }) => {
   const { mobileMax, tabletMax } = useContext(ScreenSizeContext);
   const isSmallScreen = mobileMax || tabletMax;
@@ -33,6 +35,13 @@ const ChooseAvatar = ({
               alt="choose_avatar"
               onClick={onUserCheckClick}
             />
+            {isClosable && (
+              <Done
+                src={ICONS.backIconWhite}
+                alt="back_button"
+                onClick={closeModal}
+              />
+            )}
           </Header>
           <AvatarContainer>
             {Object.keys(AVATARS).map((key) => {
@@ -53,11 +62,18 @@ const ChooseAvatar = ({
   );
 };
 
+ChooseAvatar.defaultProps = {
+  isClosable: false,
+  closeModal: () => {},
+};
+
 ChooseAvatar.propTypes = {
   chooseAvatar: PropTypes.string.isRequired,
   selectedAvatar: PropTypes.string.isRequired,
   onUserCheckClick: PropTypes.func.isRequired,
   onAvatarSelection: PropTypes.func.isRequired,
+  isClosable: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default ChooseAvatar;

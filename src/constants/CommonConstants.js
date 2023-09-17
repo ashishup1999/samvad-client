@@ -29,10 +29,21 @@ export const COMMON_TEXTS = {
   SEARCH_PEOPLE: "Search people...",
   CHOOSE_AN_AVATAR: "Choose an avatar!",
   SIGNED_UP: "Successfuly Signed Up",
+  SETTINGS: "Settings",
+  DELETE_ACCOUNT: "Delete Account",
+  CHANGE_PASSWORD: "Change Password",
+  LOG_OUT: "Log Out",
+  BACK: "Back",
+  DELETE_CONFIRM: "Enter your username to delete the account",
+  CANCEL: "Cancel",
+  DELETE: "Delete",
+  SAVE_CHANGES: "Save Changes",
+  CHANGES_SAVED: "Changes Saved Successfuly",
 };
 
 export const ERROR_TEXTS = {
   TECHNICAL: "Facing technical issues in signUp",
+  WRONG_USERNAME: "Wrong Username",
 };
 
 export const SOCKET_NAMES = {

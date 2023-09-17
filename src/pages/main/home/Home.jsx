@@ -14,6 +14,7 @@ import { BasicDetailsContext } from "../../../contexts/common/BasicDetailsProvid
 import ChatScreen from "./chat/ChatScreen";
 import SearchNew from "./searchNew/SearchNew";
 import AllChats from "./AllChats";
+import Settings from "./settings/Settings";
 
 const Home = () => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
@@ -25,6 +26,8 @@ const Home = () => {
     const payload = {};
     if (selectedChatId && (mobileMax || tabletMax)) {
       payload.currentLeftScreen = SCREENS.INDIVIDUAL_CHAT;
+    } else if (currentLeftScreen === SCREENS.SETTINGS) {
+      payload.currentLeftScreen = SCREENS.SETTINGS;
     } else {
       payload.currentLeftScreen = SCREENS.ALL_CHATS;
     }
@@ -38,7 +41,7 @@ const Home = () => {
         {currentLeftScreen === SCREENS.ALL_CHATS && <AllChats />}
         {currentLeftScreen === SCREENS.INDIVIDUAL_CHAT && ChatScreenComp}
         {currentLeftScreen === SCREENS.SEARCH_NEW && <SearchNew />}
-        {currentLeftScreen === SCREENS.SETTINGS && <>Settings</>}
+        {currentLeftScreen === SCREENS.SETTINGS && <Settings />}
       </LeftContainer>
       {!(mobileMax || tabletMax) && (
         <RightContainer>

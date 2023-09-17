@@ -28,3 +28,15 @@ export const getUsernamesByChatId = async (chatId) => {
 export const createChat = async (payload) => {
   return ajaxApi.post(`${APIConstants.CREATE_CHAT}`, payload);
 };
+
+export const updateSingleValue = async (payload) => {
+  return ajaxApi.post(`${APIConstants.UPDATE_SINGLE_VALUE}`, payload);
+};
+
+export const updateMultipleValues = async (payload) => {
+  return ajaxApi.post(`${APIConstants.UPDATE_MULTIPLE_VALUES}`, payload);
+};
+
+export const deleteUser = async (username) => {
+  return ajaxApi.get(`${APIConstants.DELETE_USER}/${username}`);
+};

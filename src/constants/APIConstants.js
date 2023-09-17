@@ -12,4 +12,7 @@ export default {
   GET_USER_ON_SEARCH: `${API_BASE_URL}/getUsersOnSearch`,
   CREATE_CHAT: `${API_BASE_URL}/createChat`,
   GET_USERNAMES_BY_CHAT_ID: `${API_BASE_URL}/getUsernamesByChatId`,
+  UPDATE_SINGLE_VALUE: `${API_BASE_URL}/updateUserSingleValue`,
+  UPDATE_MULTIPLE_VALUES: `${API_BASE_URL}/updateUserMultipleValues`,
+  DELETE_USER:`${API_BASE_URL}/deleteUser`
 };

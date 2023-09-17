@@ -8,15 +8,15 @@ import SocketProvider from "./contexts/common/SocketProvider";
 function App() {
   return (
     <div className="app">
-      <SocketProvider>
-        <BasicDetailsProvider>
-          <ScreenSizeProvider>
-            <AuthProvider>
+      <AuthProvider>
+        <SocketProvider>
+          <BasicDetailsProvider>
+            <ScreenSizeProvider>
               <RouterProvider router={router} />
-            </AuthProvider>
-          </ScreenSizeProvider>
-        </BasicDetailsProvider>
-      </SocketProvider>
+            </ScreenSizeProvider>
+          </BasicDetailsProvider>
+        </SocketProvider>
+      </AuthProvider>
     </div>
   );
 }

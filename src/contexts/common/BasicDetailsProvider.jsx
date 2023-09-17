@@ -1,8 +1,9 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import PropTypes from "prop-types";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { getUserInfo } from "../../services/home";
 import { SCREENS } from "../../constants/CommonConstants";
+import { AuthContext } from "../auth/AuthProvider";
 
 export const BasicDetailsContext = createContext();
 
@@ -20,6 +21,7 @@ const initialState = {
 
 const BasicDetailsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
+  const { authState } = useContext(AuthContext);
 
   const loadUserInfo = async () => {
     const { email, fullName, profileImg } = await getUserInfo(state?.username);
@@ -32,6 +34,12 @@ const BasicDetailsProvider = ({ children }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.username]);
+
+  useEffect(() => {
+    if (!authState?.isAuthenticated) {
+      dispatch({ payload: initialState });
+    }
+  }, [authState?.isAuthenticated]);
 
   return (
     <BasicDetailsContext.Provider

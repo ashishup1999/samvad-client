@@ -21,6 +21,8 @@ import backIconWhite from "/images/back_white_icon.svg";
 import plusIconWhite from "/images/plus_white.svg";
 import settingsWhite from "/images/settings_white.svg";
 import userCheck from "/images/user-check.svg";
+import userImgEdit from "/images/user-img-edit.svg";
+import userInfoEdit from "/images/edit-info.svg";
 import AvatarImg7309667 from "/avatars/7309667.jpg";
 import AvatarImg7309670 from "/avatars/7309670.jpg";
 import AvatarImg7309681 from "/avatars/7309681.jpg";
@@ -57,6 +59,8 @@ export const ICONS = {
   plusIconWhite,
   settingsWhite,
   userCheck,
+  userImgEdit,
+  userInfoEdit,
 };
 
 export const AVATARS = {

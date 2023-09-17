@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import PropTypes from "prop-types";
 import { ICONS, IMAGES } from "../../../constants/StaticImages";
 import useForgotPassword from "../../../hooks/auth/useForgotPassword";
 import {
@@ -17,16 +18,30 @@ import { MobileLogo, MobileLogoDiv, MobileLogoHeader } from "../index.styles";
 import { ScreenSizeContext } from "../../../contexts/common/ScreenSizeProvider";
 import { COMMON_TEXTS } from "../../../constants/CommonConstants";
 
-const ForgotPasswordForm = () => {
+const ForgotPasswordForm = ({
+  isEditAfterAuth = false,
+  setModalFalse = () => {},
+}) => {
   const formMethods = useForm({ mode: "all" });
   const { register, formState, getValues, setError, setValue } = formMethods;
   const { errors } = formState;
   const { stepper, onGetOTP, onValidateOTP, onChangePassword, onResendOtp } =
-    useForgotPassword({ setError, setValue, getValues, errors });
+    useForgotPassword({
+      setError,
+      setValue,
+      getValues,
+      errors,
+      isEditAfterAuth,
+      setModalFalse,
+    });
   const { mobileMax, tabletMax } = useContext(ScreenSizeContext);
+  const ExtraButton = (
+    <Button onClick={() => setModalFalse(false)}>{COMMON_TEXTS.CANCEL}</Button>
+  );
+
   return (
     <>
-      {(mobileMax || tabletMax) && (
+      {(mobileMax || tabletMax) && !isEditAfterAuth && (
         <MobileLogoDiv>
           <MobileLogoHeader>{COMMON_TEXTS.SAMVAD}</MobileLogoHeader>
           <MobileLogo src={IMAGES.samvadLogo} />
@@ -44,6 +59,7 @@ const ForgotPasswordForm = () => {
             errors={errors}
           />
           <Button onClick={onGetOTP}>Get OTP</Button>
+          {isEditAfterAuth && ExtraButton}
         </>
       )}
       {stepper === "enter-otp" && (
@@ -58,6 +74,7 @@ const ForgotPasswordForm = () => {
           />
           <ExtraOption onClick={onResendOtp}>Resend OTP</ExtraOption>
           <Button onClick={onValidateOTP}>Validate OTP</Button>
+          {isEditAfterAuth && ExtraButton}
         </>
       )}
       {stepper === "change-password" && (
@@ -79,6 +96,7 @@ const ForgotPasswordForm = () => {
             errors={errors}
           />
           <Button onClick={onChangePassword}>Change Password</Button>
+          {isEditAfterAuth && ExtraButton}
         </>
       )}
       {stepper === "password-changed" && (
@@ -109,6 +127,9 @@ const ForgotPasswordForm = () => {
   );
 };
 
-ForgotPasswordForm.propTypes = {};
+ForgotPasswordForm.propTypes = {
+  isEditAfterAuth: PropTypes.bool.isRequired,
+  setModalFalse: PropTypes.func.isRequired,
+};
 
 export default ForgotPasswordForm;

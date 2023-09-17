@@ -8,7 +8,13 @@ const initialState = {
   enteredEmail: "",
 };
 
-const useForgotPassword = ({ setError, getValues, errors }) => {
+const useForgotPassword = ({
+  setError,
+  getValues,
+  errors,
+  isEditAfterAuth,
+  setModalFalse,
+}) => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
   const { stepper, enteredEmail } = state;
 
@@ -63,6 +69,7 @@ const useForgotPassword = ({ setError, getValues, errors }) => {
             password: encryptData(getValues()?.confirm_password),
           });
           if (res.status !== "SUCCESS" || res?.responseCd !== "0") throw res;
+          if (isEditAfterAuth) setModalFalse(false);
           dispatch({ payload: { stepper: "password-changed" } });
         } else {
           setError("confirm_password", {

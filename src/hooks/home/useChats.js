@@ -54,13 +54,15 @@ const useChats = () => {
       if (res?.status === COMMON_TEXTS.SUCCESS) {
         const tAllChats = [];
         res?.chats?.forEach((obj) => {
-          const allChatsPayload = {};
-          allChatsPayload.username = obj?.username;
-          allChatsPayload.fullName = obj?.fullName;
-          allChatsPayload.profileImg = obj?.profileImg;
-          allChatsPayload.chatId = obj?.chatId;
-          allChatsPayload.lastMsg = { ...obj?.lastMsg };
-          tAllChats.push(allChatsPayload);
+          if (obj?.username) {
+            const allChatsPayload = {};
+            allChatsPayload.username = obj?.username;
+            allChatsPayload.fullName = obj?.fullName;
+            allChatsPayload.profileImg = obj?.profileImg;
+            allChatsPayload.chatId = obj?.chatId;
+            allChatsPayload.lastMsg = { ...obj?.lastMsg };
+            tAllChats.push(allChatsPayload);
+          }
         });
         tAllChats.sort(allChatsSortComparator);
         dispatch({ payload: { allChats: tAllChats } });
