@@ -15,7 +15,7 @@ const initialState = {
 
 const useChats = () => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
-  const { username, fullName, msgsUpdated } = basicDetails;
+  const { username, fullName, profileImg, msgsUpdated } = basicDetails;
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
   const { allChats } = state;
   const { socket } = useContext(SocketContext);
@@ -57,6 +57,7 @@ const useChats = () => {
           const allChatsPayload = {};
           allChatsPayload.username = obj?.username;
           allChatsPayload.fullName = obj?.fullName;
+          allChatsPayload.profileImg = obj?.profileImg;
           allChatsPayload.chatId = obj?.chatId;
           allChatsPayload.lastMsg = { ...obj?.lastMsg };
           tAllChats.push(allChatsPayload);
@@ -76,7 +77,7 @@ const useChats = () => {
     setBasicDetails({ payload: { currentLeftScreen: SCREENS.SETTINGS } });
   };
 
-  return { fullName, allChats, onSettingsClick };
+  return { fullName, profileImg, allChats, onSettingsClick };
 };
 
 export default useChats;

@@ -10,11 +10,15 @@ import { encryptData } from "../../utils/Encryption";
 
 const initialState = {
   accountCreated: false,
+  chooseAvatar: false,
+  selectedAvatar: "",
+  showSignUpToast: false,
 };
 
 const useSignUp = ({ getValues, onOptionChange }) => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
-  const { accountCreated } = state;
+  const { accountCreated, chooseAvatar, selectedAvatar, showSignUpToast } =
+    state;
 
   useEffect(() => {
     if (accountCreated) {
@@ -23,22 +27,54 @@ const useSignUp = ({ getValues, onOptionChange }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accountCreated]);
 
-  const onSignUp = async () => {
+  useEffect(() => {
+    if (showSignUpToast) {
+      setTimeout(() => {
+        dispatch({
+          payload: {
+            showSignUpToast: false,
+            accountCreated: true,
+          },
+        });
+      }, 1000);
+    }
+  }, [showSignUpToast]);
+
+  const onAvatarSelection = (e) => {
+    const { testid } = e.currentTarget.dataset;
+    dispatch({
+      payload: {
+        selectedAvatar: testid,
+      },
+    });
+  };
+
+  const setShowSignUpToast = (value) => {
+    dispatch({ payload: { showSignUpToast: value } });
+  };
+
+  const onUserCheckClick = async () => {
     try {
       const username = getValues()?.username;
       const fullName = getValues()?.fullname;
       const email = getValues()?.email;
       const password = encryptData(getValues()?.password);
-      if (username && fullName && email && password) {
+      if (username && fullName && email && password && selectedAvatar) {
         const payload = {
           username,
           email,
           password,
           fullName,
+          profileImg: selectedAvatar,
         };
         const res = await signUpUser(payload);
         if (res?.status === COMMON_TEXTS.SUCCESS && res?.responseCd === "0") {
-          dispatch({ payload: { accountCreated: true } });
+          dispatch({
+            payload: {
+              showSignUpToast: true,
+              chooseAvatar: false,
+            },
+          });
         } else {
           throw res;
         }
@@ -48,8 +84,18 @@ const useSignUp = ({ getValues, onOptionChange }) => {
     }
   };
 
+  const onSignUp = async () => {
+    dispatch({ payload: { chooseAvatar: true } });
+  };
+
   return {
+    selectedAvatar,
+    chooseAvatar,
+    showSignUpToast,
+    onAvatarSelection,
+    onUserCheckClick,
     onSignUp,
+    setShowSignUpToast,
   };
 };
 

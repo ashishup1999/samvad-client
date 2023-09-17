@@ -9,6 +9,7 @@ export const BasicDetailsContext = createContext();
 const initialState = {
   username: localStorage.getItem("username") || "",
   fullName: "",
+  profileImg: "",
   email: "",
   selectedChatId: "",
   msgsUpdated: false,
@@ -21,8 +22,8 @@ const BasicDetailsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
 
   const loadUserInfo = async () => {
-    const { email, fullName } = await getUserInfo(state?.username);
-    dispatch({ payload: { email, fullName } });
+    const { email, fullName, profileImg } = await getUserInfo(state?.username);
+    dispatch({ payload: { email, fullName, profileImg } });
   };
 
   useEffect(() => {

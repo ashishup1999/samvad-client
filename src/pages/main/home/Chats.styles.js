@@ -12,10 +12,10 @@ export const UserInfoHeader = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 65px;
+  height: 75px;
   width: 100%;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 18px;
   background: ${COLORS.BLUE1};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   margin-bottom: 20px;

@@ -45,7 +45,11 @@ const useLogin = ({ getValues, setAuthState }) => {
           localStorage.setItem("isAuthenticated", true);
           localStorage.setItem("username", username);
           setBasicDetails({
-            payload: { username, fullName: res?.fullName },
+            payload: {
+              username,
+              fullName: res?.fullName,
+              profileImg: res?.profileImg,
+            },
           });
           setAuthState({ payload: { isAuthenticated: res?.isAuthenticated } });
         } else {

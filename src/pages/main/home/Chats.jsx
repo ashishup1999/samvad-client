@@ -1,4 +1,4 @@
-import { ICONS } from "../../../constants/StaticImages";
+import { AVATARS, ICONS } from "../../../constants/StaticImages";
 import useChats from "../../../hooks/home/useChats";
 import ChatInfoBox from "./ChatInfoBox";
 import ChatSearch from "./ChatSearch";
@@ -11,11 +11,11 @@ import {
 } from "./Chats.styles";
 
 const Chats = () => {
-  const { fullName, allChats, onSettingsClick } = useChats();
+  const { fullName, profileImg, allChats, onSettingsClick } = useChats();
   return (
     <ChatsWrapper>
       <UserInfoHeader>
-        <ProfileImage src="x.png" alt="" />
+        <ProfileImage src={AVATARS[profileImg]} alt="" />
         <UserFullName>{fullName}</UserFullName>
         <MoreOptionsIcon
           src={ICONS.settingsWhite}

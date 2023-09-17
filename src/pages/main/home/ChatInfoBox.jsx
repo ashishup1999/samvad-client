@@ -14,8 +14,9 @@ import { useContext, useEffect } from "react";
 import { BasicDetailsContext } from "../../../contexts/common/BasicDetailsProvider";
 import { SocketContext } from "../../../contexts/common/SocketProvider";
 import { SOCKET_NAMES } from "../../../constants/CommonConstants";
+import { AVATARS } from "../../../constants/StaticImages";
 
-const ChatInfoBox = ({ chatId, fullName, lastMsg }) => {
+const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { selectedChatId } = basicDetails;
   const { socket } = useContext(SocketContext);
@@ -37,7 +38,7 @@ const ChatInfoBox = ({ chatId, fullName, lastMsg }) => {
         selected={selectedChatId === chatId}
         onClick={onClickChat}
       >
-        <ProfileImage src="x.png" alt="" />
+        <ProfileImage src={AVATARS[profileImg]} alt="" />
         <ChatBriefInfo>
           <UserFullName>{fullName}</UserFullName>
           <LastMessage>{lastMsg?.msg}</LastMessage>
@@ -53,6 +54,7 @@ const ChatInfoBox = ({ chatId, fullName, lastMsg }) => {
 ChatInfoBox.propTypes = {
   chatId: PropTypes.string.isRequired,
   fullName: PropTypes.string.isRequired,
+  profileImg: PropTypes.string.isRequired,
   lastMsg: PropTypes.shape({
     msg: PropTypes.string.isRequired,
     sentAt: PropTypes.string.isRequired,

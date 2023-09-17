@@ -97,7 +97,6 @@ export const FormOption = styled.div`
   font-family: roboto-smvd-medium;
   font-size: 1.1em;
   position: relative;
-  z-index: 2;
 `;
 
 export const FormOptionSlider = styled.div`

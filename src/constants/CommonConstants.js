@@ -27,6 +27,8 @@ export const COMMON_TEXTS = {
   SEARCH_CHATS: "Search chats...",
   TYPING_SOMETHING_TEXT: "Type something...",
   SEARCH_PEOPLE: "Search people...",
+  CHOOSE_AN_AVATAR: "Choose an avatar!",
+  SIGNED_UP: "Successfuly Signed Up",
 };
 
 export const ERROR_TEXTS = {
@@ -51,17 +53,4 @@ export const SCREENS = {
   SEARCH_NEW: "SEARCH_NEW",
   INDIVIDUAL_CHAT: "INDIVIDUAL_CHAT",
   SETTINGS: "SETTINGS",
-};
-
-export const AVATARS = {
-  7309667: "7309667.jpg",
-  7309670: "7309670.jpg",
-  7309681: "7309681.jpg",
-  7309703: "7309703.jpg",
-  9334243: "9334243.jpg",
-  9434619: "9434619.jpg",
-  9434650: "9434650.jpg",
-  9439726: "9439726.jpg",
-  9439833: "9439833.jpg",
-  9440461: "9440461.jpg",
 };

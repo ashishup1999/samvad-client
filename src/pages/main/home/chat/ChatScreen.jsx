@@ -16,7 +16,7 @@ import {
   UserInfoDiv,
 } from "./ChatScreen.styles";
 import useIndividualChats from "../../../../hooks/home/useIndividualChat";
-import { ICONS } from "../../../../constants/StaticImages";
+import { AVATARS, ICONS } from "../../../../constants/StaticImages";
 import { COMMON_TEXTS } from "../../../../constants/CommonConstants";
 import { ScreenSizeContext } from "../../../../contexts/common/ScreenSizeProvider";
 
@@ -41,7 +41,7 @@ const ChatScreen = () => {
           {(mobileMax || tabletMax) && (
             <BackIcon src={ICONS.backIconWhite} alt="" onClick={onBackClick} />
           )}
-          <ProfileImage src="x.png" alt="" />
+          <ProfileImage src={AVATARS[otherUserInfo?.profileImg]} alt="" />
           <UserFullName>{otherUserInfo?.fullName}</UserFullName>
           <MoreOptionsIcon src={ICONS.menuDots} alt="" />
         </UserInfoDiv>

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import Divider from "../../../components/Divider";
 import Input from "../../../components/Input";
-import { COLORS } from "../../../constants/CommonConstants";
+import { COLORS, COMMON_TEXTS } from "../../../constants/CommonConstants";
 import { ICONS } from "../../../constants/StaticImages";
 import {
   Button,
@@ -14,12 +14,22 @@ import {
 } from "./index.styles";
 import rules from "../../../utils/Validation";
 import useSignUp from "../../../hooks/auth/useSignUp";
+import ChooseAvatar from "./ChooseAvatar";
+import Toast from "../../../components/Toast";
 
 const SignupForm = ({ onOptionChange }) => {
   const formMethods = useForm({ mode: "all" });
   const { register, getValues, formState } = formMethods;
   const { errors } = formState;
-  const { onSignUp } = useSignUp({ getValues, onOptionChange });
+  const {
+    selectedAvatar,
+    chooseAvatar,
+    showSignUpToast,
+    onAvatarSelection,
+    onUserCheckClick,
+    onSignUp,
+    setShowSignUpToast,
+  } = useSignUp({ getValues, onOptionChange });
 
   return (
     <>
@@ -70,6 +80,19 @@ const SignupForm = ({ onOptionChange }) => {
         <OtherSignUpOption src={ICONS.facebookIcon} />
         <OtherSignUpOption src={ICONS.appleIcon} />
       </OtherSignUpOptionContainer>
+      {chooseAvatar && (
+        <ChooseAvatar
+          chooseAvatar={chooseAvatar}
+          selectedAvatar={selectedAvatar}
+          onUserCheckClick={onUserCheckClick}
+          onAvatarSelection={onAvatarSelection}
+        />
+      )}
+      <Toast
+        text={COMMON_TEXTS.SIGNED_UP}
+        show={showSignUpToast}
+        setShow={setShowSignUpToast}
+      />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { COMMON_TEXTS } from "../../../../constants/CommonConstants";
-import { ICONS } from "../../../../constants/StaticImages";
+import { AVATARS, ICONS } from "../../../../constants/StaticImages";
 import useSearchNew from "../../../../hooks/home/useSearchNew";
 import {
   PeopleSearchWrapper,
@@ -40,7 +40,7 @@ const SearchNew = () => {
         return (
           <>
             <SearchOptionWrappper>
-              <ProfileImage src={userObj?.profileImg} />
+              <ProfileImage src={AVATARS[userObj?.profileImg]} />
               <UserFullName>{userObj?.fullName}</UserFullName>
               <CreateChatButton
                 id={userObj?.username}
