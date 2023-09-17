@@ -10,21 +10,13 @@ import {
   UserFullName,
 } from "./ChatInfoBox.styles";
 import { timeFromNow } from "../../../utils/CommonUtils";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { BasicDetailsContext } from "../../../contexts/common/BasicDetailsProvider";
-import { SocketContext } from "../../../contexts/common/SocketProvider";
-import { SOCKET_NAMES } from "../../../constants/CommonConstants";
 import { AVATARS } from "../../../constants/StaticImages";
 
 const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { selectedChatId } = basicDetails;
-  const { socket } = useContext(SocketContext);
-
-  useEffect(() => {
-    socket.emit(SOCKET_NAMES.JOIN_ROOM, { chatId });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const onClickChat = (e) => {
     const { id } = e.currentTarget;

@@ -11,7 +11,8 @@ import {
 } from "./Chats.styles";
 
 const Chats = () => {
-  const { fullName, profileImg, allChats, onSettingsClick } = useChats();
+  const { fullName, profileImg, allChats, onSettingsClick, onChatSearch } =
+    useChats();
   return (
     <ChatsWrapper>
       <UserInfoHeader>
@@ -23,7 +24,7 @@ const Chats = () => {
           onClick={onSettingsClick}
         />
       </UserInfoHeader>
-      <ChatSearch />
+      <ChatSearch onChatSearch={onChatSearch} />
       {allChats.map((obj) => {
         return <ChatInfoBox key={obj?.chatId} {...obj} />;
       })}

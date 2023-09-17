@@ -62,6 +62,7 @@ const useChats = () => {
             allChatsPayload.chatId = obj?.chatId;
             allChatsPayload.lastMsg = { ...obj?.lastMsg };
             tAllChats.push(allChatsPayload);
+            socket.emit(SOCKET_NAMES.JOIN_ROOM, { chatId: obj?.chatId });
           }
         });
         tAllChats.sort(allChatsSortComparator);
@@ -75,11 +76,25 @@ const useChats = () => {
     }
   };
 
+  const onChatSearch = (e) => {
+    const searchKey = e.target.value;
+    if (searchKey) {
+      const tempAllChats = allChats.filter(
+        (obj) =>
+          obj?.username?.includes(searchKey) ||
+          obj?.fullName?.includes(searchKey)
+      );
+      dispatch({ payload: { allChats: tempAllChats } });
+    } else {
+      getAllChats();
+    }
+  };
+
   const onSettingsClick = () => {
     setBasicDetails({ payload: { currentLeftScreen: SCREENS.SETTINGS } });
   };
 
-  return { fullName, profileImg, allChats, onSettingsClick };
+  return { fullName, profileImg, allChats, onSettingsClick, onChatSearch };
 };
 
 export default useChats;
