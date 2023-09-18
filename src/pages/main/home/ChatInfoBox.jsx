@@ -5,6 +5,7 @@ import {
   ChatBriefInfo,
   ChatInfoWrapper,
   LastMessage,
+  NewMsgDot,
   ProfileImage,
   TimeAgo,
   UserFullName,
@@ -16,7 +17,7 @@ import { AVATARS } from "../../../constants/StaticImages";
 
 const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
-  const { selectedChatId } = basicDetails;
+  const { username, selectedChatId } = basicDetails;
 
   const onClickChat = (e) => {
     const { id } = e.currentTarget;
@@ -37,6 +38,7 @@ const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
         </ChatBriefInfo>
         <ChatAdditionalInfo>
           <TimeAgo>{timeFromNow(moment, lastMsg?.sentAt)}</TimeAgo>
+          {!lastMsg?.seenBy?.includes(username) && <NewMsgDot />}
         </ChatAdditionalInfo>
       </ChatInfoWrapper>
     </>
@@ -50,6 +52,7 @@ ChatInfoBox.propTypes = {
   lastMsg: PropTypes.shape({
     msg: PropTypes.string.isRequired,
     sentAt: PropTypes.string.isRequired,
+    seenBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   }),
   updateLatestChat: PropTypes.func.isRequired,
 };

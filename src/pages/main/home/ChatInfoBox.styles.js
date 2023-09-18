@@ -69,3 +69,11 @@ export const TimeAgo = styled.p`
   color: ${COLORS.BLUE1};
   margin-left: auto;
 `;
+export const NewMsgDot = styled.div`
+  width: 10px;
+  height: 10px;
+  background: ${COLORS.BLUE1};
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: 3px;
+`;

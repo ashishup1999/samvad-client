@@ -20,7 +20,7 @@ const Home = () => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { selectedChatId, currentLeftScreen } = basicDetails;
   const { mobileMax, tabletMax } = useContext(ScreenSizeContext);
-  const ChatScreenComp = <ChatScreen />;
+  const ChatScreenComp = <ChatScreen key={selectedChatId} />;
 
   useEffect(() => {
     const payload = {};

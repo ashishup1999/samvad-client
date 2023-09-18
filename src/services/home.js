@@ -9,9 +9,9 @@ export const getUserInfo = async (username) => {
   return ajaxApi.get(`${APIConstants.GET_USER_INFO}/${username}`);
 };
 
-export const getChatInfoByChatId = async (username, chatId) => {
+export const getChatInfoByChatId = async (username, chatId, pageNo) => {
   return ajaxApi.get(
-    `${APIConstants.GET_CHAT_INFO_BY_CHAT_ID}/${username}?chatId=${chatId}`
+    `${APIConstants.GET_CHAT_INFO_BY_CHAT_ID}/${username}?chatId=${chatId}&pageNo=${pageNo}`
   );
 };
 

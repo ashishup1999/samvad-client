@@ -1,4 +1,4 @@
-import { useContext, useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
@@ -11,29 +11,39 @@ const initialState = {
   otherUserInfo: null,
   msgs: [],
   typedMsg: "",
+  currPage: 0,
+  maxPage: -1,
 };
 
 const useIndividualChats = () => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
-  const { otherUserInfo, msgs, typedMsg } = state;
+  const { otherUserInfo, msgs, typedMsg, currPage, maxPage } = state;
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { username, selectedChatId, isSelectedChatNew } = basicDetails;
   const { socket } = useContext(SocketContext);
+  const msgDivSecRef = useRef(null);
 
   useEffect(() => {
-    if (selectedChatId) setOtherUserInfo();
+    if (selectedChatId) setOtherUserInfo(currPage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedChatId]);
+  }, [selectedChatId, currPage]);
 
   const setOtherUserInfo = async () => {
     try {
-      const { users, msgs } = await getChatInfoByChatId(
-        username,
-        selectedChatId
-      );
-      dispatch({
-        payload: { otherUserInfo: users[0], msgs: msgs.reverse() },
-      });
+      if (maxPage < currPage) {
+        const res = await getChatInfoByChatId(
+          username,
+          selectedChatId,
+          currPage
+        );
+        dispatch({
+          payload: {
+            otherUserInfo: res?.users[0],
+            msgs: [...msgs, ...res.msgs],
+            maxPage: currPage,
+          },
+        });
+      }
     } catch {
       //add error
     }
@@ -80,14 +90,25 @@ const useIndividualChats = () => {
     }
   };
 
+  const onMsgDivScroll = () => {
+    const viewHt = msgDivSecRef?.current?.clientHeight;
+    const scrollHt = msgDivSecRef?.current?.scrollHeight;
+    const scrollTop = msgDivSecRef?.current?.scrollTop;
+    if (scrollHt + scrollTop === viewHt) {
+      dispatch({ payload: { currPage: currPage + 1 } });
+    }
+  };
+
   return {
     otherUserInfo,
     msgs,
     typedMsg,
+    msgDivSecRef,
     onTyping,
     sendMessage,
     onBackClick,
     onKeyDown,
+    onMsgDivScroll,
   };
 };
 

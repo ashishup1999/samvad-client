@@ -46,11 +46,19 @@ export const timeFromNow = (moment, timeAt) => {
     minutes: Number(currTS.diff(msgTS, "minutes")),
     seconds: Number(currTS.diff(msgTS, "seconds")),
   };
-  if (diffs.days) return diffs.days + "d";
-  else if (diffs.hours) return diffs.hours + "h";
-  else if (diffs.minutes) return diffs.minutes + "m";
-  else if (diffs.seconds) return diffs.seconds + "s";
-  else return "";
+  if (diffs.days < 1) return msgTS.format("h:mm");
+  if (diffs.days < 2) return "Yesterday";
+  if (diffs.days < 8) return msgTS.format("dddd");
+  if (diffs.days < 8) return msgTS.format("dddd");
+  return msgTS.calendar();
+};
+
+export const getDateAndTime = (moment, timeAt) => {
+  const msgTS = moment(timeAt);
+  const clockTime = msgTS.format("h:mm");
+  const timeDiff = timeFromNow(moment, timeAt);
+  if (clockTime === timeDiff) return timeDiff;
+  return `${msgTS.format("h:mm")} ${timeFromNow(moment, timeAt)}`;
 };
 
 export const debounce = (func, timeout = 1000) => {

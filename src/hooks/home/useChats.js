@@ -8,6 +8,7 @@ import {
 } from "../../constants/CommonConstants";
 import { getUserAllChats, getUsernamesByChatId } from "../../services/home";
 import { SocketContext } from "../../contexts/common/SocketProvider";
+import moment from "moment";
 
 const initialState = {
   allChats: [],
@@ -45,7 +46,10 @@ const useChats = () => {
   });
 
   const allChatsSortComparator = (obj1, obj2) => {
-    return obj1?.lastMsg?.sentAt > obj2?.lastMsg?.sentAt;
+    return (
+      moment(obj2?.lastMsg?.sentAt).valueOf() -
+      moment(obj1?.lastMsg?.sentAt).valueOf()
+    );
   };
 
   const getAllChats = async () => {

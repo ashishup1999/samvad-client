@@ -124,9 +124,6 @@ export const MsgSectionDiv = styled.div`
 `;
 
 export const MsgBoxSender = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   max-width: 40%;
   width: fit-content;
   padding: 10px 20px;
@@ -134,16 +131,14 @@ export const MsgBoxSender = styled.div`
   background: ${COLORS.BLUE1};
   color: ${COLORS.WHITE1};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-  margin: 15px;
+  margin: 3px;
   cursor: pointer;
   margin-left: auto;
   font-family: "roboto-smvd-medium";
+  word-wrap: break-word;
 `;
 
 export const MsgBoxOthers = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   max-width: 40%;
   width: fit-content;
   padding: 10px 20px;
@@ -152,8 +147,31 @@ export const MsgBoxOthers = styled.div`
   border: 1px solid ${COLORS.BLUE1};
   color: ${COLORS.BLUE1};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-  margin: 15px;
+  margin: 3px;
   cursor: pointer;
   margin-right: auto;
   font-family: "roboto-smvd-medium";
+  word-wrap: break-word;
+`;
+
+export const TimeRight = styled.p`
+  max-width: 40%;
+  width: fit-content;
+  border-radius: 20px;
+  color: ${COLORS.GREY1};
+  margin: 3px 15px 10px auto;
+  font-family: "roboto-smvd-medium";
+  font-size: 10px;
+  word-wrap: break-word;
+`;
+
+export const TimeLeft = styled.p`
+  max-width: 40%;
+  width: fit-content;
+  border-radius: 20px;
+  color: ${COLORS.GREY1};
+  margin: 3px auto 10px 15px;
+  font-family: "roboto-smvd-medium";
+  font-size: 10px;
+  word-wrap: break-word;
 `;

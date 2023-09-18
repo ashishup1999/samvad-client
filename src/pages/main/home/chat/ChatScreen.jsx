@@ -12,6 +12,8 @@ import {
   SendBoxContainer,
   SendIcon,
   TextInputBox,
+  TimeLeft,
+  TimeRight,
   UserFullName,
   UserInfoDiv,
 } from "./ChatScreen.styles";
@@ -19,6 +21,8 @@ import useIndividualChats from "../../../../hooks/home/useIndividualChat";
 import { AVATARS, ICONS } from "../../../../constants/StaticImages";
 import { COMMON_TEXTS } from "../../../../constants/CommonConstants";
 import { ScreenSizeContext } from "../../../../contexts/common/ScreenSizeProvider";
+import { getDateAndTime } from "../../../../utils/CommonUtils";
+import moment from "moment";
 
 const ChatScreen = () => {
   const { mobileMax, tabletMax } = useContext(ScreenSizeContext);
@@ -28,12 +32,14 @@ const ChatScreen = () => {
     otherUserInfo,
     msgs,
     typedMsg,
+    msgDivSecRef,
     onTyping,
     sendMessage,
     onBackClick,
     onKeyDown,
+    onMsgDivScroll,
   } = useIndividualChats();
-
+  
   return (
     <>
       <ChatScreenWrapper id={selectedChatId}>
@@ -45,13 +51,19 @@ const ChatScreen = () => {
           <UserFullName>{otherUserInfo?.fullName}</UserFullName>
           <MoreOptionsIcon src={ICONS.menuDots} alt="" />
         </UserInfoDiv>
-        <MsgSectionDiv>
+        <MsgSectionDiv ref={msgDivSecRef} onScroll={onMsgDivScroll}>
           {msgs.map((msgObj) => {
             if (!msgObj || !msgObj?.msg) return <></>;
             return msgObj?.sender === username ? (
-              <MsgBoxSender>{msgObj?.msg}</MsgBoxSender>
+              <>
+                <TimeRight>{getDateAndTime(moment, msgObj?.sentAt)}</TimeRight>
+                <MsgBoxSender>{msgObj?.msg}</MsgBoxSender>
+              </>
             ) : (
-              <MsgBoxOthers>{msgObj?.msg}</MsgBoxOthers>
+              <>
+                <TimeLeft>{getDateAndTime(moment, msgObj?.sentAt)}</TimeLeft>
+                <MsgBoxOthers>{msgObj?.msg}</MsgBoxOthers>
+              </>
             );
           })}
         </MsgSectionDiv>
