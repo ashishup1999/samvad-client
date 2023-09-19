@@ -12,6 +12,7 @@ const initialState = {
   fullName: "",
   profileImg: "",
   email: "",
+  rememberMe: false,
   selectedChatId: "",
   msgsUpdated: false,
   createSearch: false,

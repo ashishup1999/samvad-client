@@ -27,7 +27,8 @@ const ChangeUserInfo = ({ isEdit, setEdit }) => {
             fullName: getValues()?.fullname,
           },
         });
-        localStorage.setItem("username", getValues()?.username);
+        if (basicDetails?.rememberMe)
+          localStorage.setItem("username", getValues()?.username);
       }, 1000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

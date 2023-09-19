@@ -39,6 +39,7 @@ export const COMMON_TEXTS = {
   DEACTIVATE: "Deactivate",
   SAVE_CHANGES: "Save Changes",
   CHANGES_SAVED: "Changes Saved Successfuly",
+  YOU: "You",
 };
 
 export const ERROR_TEXTS = {

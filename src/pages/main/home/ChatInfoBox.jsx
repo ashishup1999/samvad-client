@@ -5,6 +5,7 @@ import {
   ChatBriefInfo,
   ChatInfoWrapper,
   LastMessage,
+  LastMessageBy,
   NewMsgDot,
   ProfileImage,
   TimeAgo,
@@ -14,6 +15,7 @@ import { timeFromNow } from "../../../utils/CommonUtils";
 import { useContext } from "react";
 import { BasicDetailsContext } from "../../../contexts/common/BasicDetailsProvider";
 import { AVATARS } from "../../../constants/StaticImages";
+import { COMMON_TEXTS } from "../../../constants/CommonConstants";
 
 const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
@@ -34,7 +36,12 @@ const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
         <ProfileImage src={AVATARS[profileImg]} alt="" />
         <ChatBriefInfo>
           <UserFullName>{fullName}</UserFullName>
-          <LastMessage>{lastMsg?.msg}</LastMessage>
+          <LastMessage>
+            {username === lastMsg?.sender && (
+              <LastMessageBy>{COMMON_TEXTS.YOU}: </LastMessageBy>
+            )}
+            {lastMsg?.msg}
+          </LastMessage>
         </ChatBriefInfo>
         <ChatAdditionalInfo>
           <TimeAgo>{timeFromNow(moment, lastMsg?.sentAt)}</TimeAgo>
@@ -52,6 +59,7 @@ ChatInfoBox.propTypes = {
   lastMsg: PropTypes.shape({
     msg: PropTypes.string.isRequired,
     sentAt: PropTypes.string.isRequired,
+    sender: PropTypes.string.isRequired,
     seenBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   }),
   updateLatestChat: PropTypes.func.isRequired,

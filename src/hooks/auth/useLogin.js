@@ -6,13 +6,13 @@ import { encryptData } from "../../utils/Encryption";
 
 const initialState = {
   showPassword: false,
-  rememberMe: false,
 };
 
 const useLogin = ({ getValues, setAuthState }) => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
-  const { showPassword, rememberMe } = state;
-  const { setBasicDetails } = useContext(BasicDetailsContext);
+  const { showPassword } = state;
+  const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
+  const { rememberMe } = basicDetails;
 
   const onEyeClick = () => {
     dispatch({
@@ -23,7 +23,7 @@ const useLogin = ({ getValues, setAuthState }) => {
   };
 
   const onRememberMe = () => {
-    dispatch({
+    setBasicDetails({
       payload: {
         rememberMe: !rememberMe,
       },
@@ -42,8 +42,10 @@ const useLogin = ({ getValues, setAuthState }) => {
         };
         const res = await authenticateUser(payload);
         if (res?.status === "SUCCESS") {
-          localStorage.setItem("isAuthenticated", true);
-          localStorage.setItem("username", username);
+          if (rememberMe) {
+            localStorage.setItem("isAuthenticated", true);
+            localStorage.setItem("username", username);
+          }
           setBasicDetails({
             payload: {
               username,

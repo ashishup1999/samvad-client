@@ -40,7 +40,18 @@ export const UserFullName = styled.p`
   color: ${COLORS.BLUE1};
 `;
 
-export const LastMessage = styled.p`
+export const LastMessageBy = styled.span`
+  width: fit-content;
+  font-size: 14px;
+  color: ${COLORS.GREY1};
+  font-family: "roboto-smvd-medium";
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+`;
+
+export const LastMessage = styled.span`
   font-size: 14px;
   color: ${COLORS.BLACK1};
   margin-left: 1px;
