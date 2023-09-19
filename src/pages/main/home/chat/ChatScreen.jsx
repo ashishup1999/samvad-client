@@ -4,7 +4,11 @@ import {
   BackIcon,
   BottomContainer,
   ChatScreenWrapper,
+  CheckBox,
+  MoreOption,
+  MoreOptionsDiv,
   MoreOptionsIcon,
+  MsgBox,
   MsgBoxOthers,
   MsgBoxSender,
   MsgSectionDiv,
@@ -33,13 +37,17 @@ const ChatScreen = () => {
     msgs,
     typedMsg,
     msgDivSecRef,
+    deleteOption,
     onTyping,
     sendMessage,
     onBackClick,
     onKeyDown,
     onMsgDivScroll,
+    toggleMoreOption,
+    onClickDeleteMsgs,
+    onSelectToDelMsgs,
   } = useIndividualChats();
-  
+
   return (
     <>
       <ChatScreenWrapper id={selectedChatId}>
@@ -49,7 +57,24 @@ const ChatScreen = () => {
           )}
           <ProfileImage src={AVATARS[otherUserInfo?.profileImg]} alt="" />
           <UserFullName>{otherUserInfo?.fullName}</UserFullName>
-          <MoreOptionsIcon src={ICONS.menuDots} alt="" />
+          <MoreOptionsDiv>
+            {deleteOption ? (
+              <>
+                <MoreOption onClick={onClickDeleteMsgs}>
+                  {COMMON_TEXTS.DELETE_MSGS}
+                </MoreOption>
+                <MoreOption onClick={() => toggleMoreOption(false)}>
+                  {COMMON_TEXTS.CANCEL}
+                </MoreOption>
+              </>
+            ) : (
+              <MoreOptionsIcon
+                src={ICONS.deleteWhite}
+                alt=""
+                onClick={() => toggleMoreOption(true)}
+              />
+            )}
+          </MoreOptionsDiv>
         </UserInfoDiv>
         <MsgSectionDiv ref={msgDivSecRef} onScroll={onMsgDivScroll}>
           {msgs.map((msgObj) => {
@@ -57,12 +82,30 @@ const ChatScreen = () => {
             return msgObj?.sender === username ? (
               <>
                 <TimeRight>{getDateAndTime(moment, msgObj?.sentAt)}</TimeRight>
-                <MsgBoxSender>{msgObj?.msg}</MsgBoxSender>
+                <MsgBox>
+                  <MsgBoxSender>{msgObj?.msg}</MsgBoxSender>
+                  {deleteOption && (
+                    <CheckBox
+                      data-testid={msgObj?.msgId}
+                      type="checkbox"
+                      onChange={onSelectToDelMsgs}
+                    />
+                  )}
+                </MsgBox>
               </>
             ) : (
               <>
                 <TimeLeft>{getDateAndTime(moment, msgObj?.sentAt)}</TimeLeft>
-                <MsgBoxOthers>{msgObj?.msg}</MsgBoxOthers>
+                <MsgBox>
+                  {deleteOption && (
+                    <CheckBox
+                      data-testid={msgObj?.msgId}
+                      type="checkbox"
+                      onClick={onSelectToDelMsgs}
+                    />
+                  )}
+                  <MsgBoxOthers>{msgObj?.msg}</MsgBoxOthers>
+                </MsgBox>
               </>
             );
           })}

@@ -46,3 +46,7 @@ export const markAllMsgsSeen = async (username, chatId) => {
     `${APIConstants.MARK_ALL_MSGS_SEEN}/${username}?chatId=${chatId}`
   );
 };
+
+export const deleteMsgs = async (payload) => {
+  return ajaxApi.post(`${APIConstants.DELETE_MSGS}`, payload);
+};

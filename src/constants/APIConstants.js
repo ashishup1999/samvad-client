@@ -16,4 +16,5 @@ export default {
   UPDATE_MULTIPLE_VALUES: `${API_BASE_URL}/updateUserMultipleValues`,
   DEACTIVATE_USER: `${API_BASE_URL}/deactivateUser`,
   MARK_ALL_MSGS_SEEN: `${API_BASE_URL}/markAllMsgsSeen`,
+  DELETE_MSGS:`${API_BASE_URL}/deleteMsgs`
 };

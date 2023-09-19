@@ -40,6 +40,7 @@ export const COMMON_TEXTS = {
   SAVE_CHANGES: "Save Changes",
   CHANGES_SAVED: "Changes Saved Successfuly",
   YOU: "You",
+  DELETE_MSGS:"Delete Messages"
 };
 
 export const ERROR_TEXTS = {

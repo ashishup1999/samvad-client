@@ -20,6 +20,7 @@ import { COMMON_TEXTS } from "../../../constants/CommonConstants";
 const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { username, selectedChatId } = basicDetails;
+  const isSeen = lastMsg?.seenBy?.includes(username);
 
   const onClickChat = (e) => {
     const { id } = e.currentTarget;
@@ -36,7 +37,7 @@ const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
         <ProfileImage src={AVATARS[profileImg]} alt="" />
         <ChatBriefInfo>
           <UserFullName>{fullName}</UserFullName>
-          <LastMessage>
+          <LastMessage seen={isSeen}>
             {username === lastMsg?.sender && (
               <LastMessageBy>{COMMON_TEXTS.YOU}: </LastMessageBy>
             )}
@@ -45,7 +46,7 @@ const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
         </ChatBriefInfo>
         <ChatAdditionalInfo>
           <TimeAgo>{timeFromNow(moment, lastMsg?.sentAt)}</TimeAgo>
-          {!lastMsg?.seenBy?.includes(username) && <NewMsgDot />}
+          {!isSeen && <NewMsgDot />}
         </ChatAdditionalInfo>
       </ChatInfoWrapper>
     </>

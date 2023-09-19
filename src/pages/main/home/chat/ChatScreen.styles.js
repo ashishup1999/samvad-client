@@ -38,13 +38,32 @@ export const UserFullName = styled.p`
   color: ${COLORS.WHITE1};
 `;
 
+export const MoreOptionsDiv = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+
 export const MoreOptionsIcon = styled.img`
   display: flex;
-  height: 35px;
+  height: 30px;
   width: auto;
   padding: 3px;
-  margin-left: auto;
   cursor: pointer;
+`;
+
+export const MoreOption = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  height: 30px;
+  margin: 2px;
+  border-radius: 10px;
+  color: ${COLORS.BLUE1};
+  background: ${COLORS.WHITE1};
+  border-bottom: 1px solid ${COLORS.BLUE1};
+  font-family: "roboto-smvd-medium";
+  font-size: 14px;
 `;
 
 export const BackIcon = styled.img`
@@ -123,6 +142,10 @@ export const MsgSectionDiv = styled.div`
   bottom: 0;
 `;
 
+export const MsgBox = styled.div`
+  display: flex;
+`;
+
 export const MsgBoxSender = styled.div`
   max-width: 40%;
   width: fit-content;
@@ -174,4 +197,18 @@ export const TimeLeft = styled.p`
   font-family: "roboto-smvd-medium";
   font-size: 10px;
   word-wrap: break-word;
+`;
+
+export const CheckBox = styled.input`
+  appearance: none;
+  outline: 1px solid ${COLORS.BLUE1};
+  border-radius: 2px;
+  width: 15px;
+  height: 15px;
+  place-content: center;
+  margin: auto 5px;
+  &:checked {
+    background-color: ${COLORS.BLUE1};
+    box-shadow: inset 0px 0px 0px 2px ${COLORS.WHITE1};
+  }
 `;

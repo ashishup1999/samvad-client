@@ -55,7 +55,8 @@ export const LastMessage = styled.span`
   font-size: 14px;
   color: ${COLORS.BLACK1};
   margin-left: 1px;
-  font-family: "roboto-smvd-medium";
+  font-family: ${(props) =>
+    props.seen ? "roboto-smvd-light" : "roboto-smvd-medium"};
   max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
