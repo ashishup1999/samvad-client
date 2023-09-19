@@ -7,7 +7,7 @@ import {
   SCREENS,
 } from "../../constants/CommonConstants";
 import { AuthContext } from "../../contexts/auth/AuthProvider";
-import { deleteUser, updateSingleValue } from "../../services/home";
+import { deactivateUser, updateSingleValue } from "../../services/home";
 
 const initialState = {
   chooseAvatar: false,
@@ -86,16 +86,16 @@ const useSettings = () => {
     dispatch({ payload: { deleteAcc: true } });
   };
 
-  const cancelDeleteAccount = () => {
+  const cancelDeactivateAccount = () => {
     dispatch({
       payload: { deleteAcc: false, enteredUsername: "", usernameErr: "" },
     });
   };
 
-  const confirmDeleteAccount = async () => {
+  const confirmDeactivateAccount = async () => {
     try {
       if (username === enteredUsername) {
-        const res = await deleteUser(username);
+        const res = await deactivateUser(username);
         if (res?.status === COMMON_TEXTS.SUCCESS) {
           localStorage.removeItem("username");
           localStorage.removeItem("isAuthenticated");
@@ -137,8 +137,8 @@ const useSettings = () => {
     onAvatarSelection,
     changeAvatar,
     onClickDeleteAcc,
-    cancelDeleteAccount,
-    confirmDeleteAccount,
+    cancelDeactivateAccount,
+    confirmDeactivateAccount,
     onChangeUsername,
     setEditUserInfo,
     setEditPassword,

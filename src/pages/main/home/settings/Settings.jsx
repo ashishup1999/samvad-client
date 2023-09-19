@@ -16,7 +16,7 @@ import { BasicDetailsContext } from "../../../../contexts/common/BasicDetailsPro
 import { AVATARS, ICONS } from "../../../../constants/StaticImages";
 import useSettings from "../../../../hooks/home/useSettings";
 import ChooseAvatar from "../../../auth/signup/ChooseAvatar";
-import DeleteAccount from "./DeleteAccount";
+import DeactivateAccount from "./DeactivateAccount";
 import ChangeUserInfo from "./ChangeUserInfo";
 import Modal from "../../../../components/Modal";
 import ForgotPasswordForm from "../../../auth/forgotPassword";
@@ -38,8 +38,8 @@ const Settings = () => {
     onAvatarSelection,
     changeAvatar,
     onClickDeleteAcc,
-    cancelDeleteAccount,
-    confirmDeleteAccount,
+    cancelDeactivateAccount,
+    confirmDeactivateAccount,
     onChangeUsername,
     setEditUserInfo,
     setEditPassword,
@@ -69,7 +69,7 @@ const Settings = () => {
         textcolor={COLORS.RED1}
         onClick={onClickDeleteAcc}
       >
-        {COMMON_TEXTS.DELETE_ACCOUNT}
+        {COMMON_TEXTS.DEACTIVATE_ACCOUNT}
       </OtherOptionsText>
       <OtherOptionsText
         bgcolor={COLORS.BLUE1}
@@ -93,13 +93,13 @@ const Settings = () => {
         isClosable
         closeModal={closeAvatarModal}
       />
-      <DeleteAccount
+      <DeactivateAccount
         {...{
           deleteAcc,
           usernameErr,
           enteredUsername,
-          cancelDeleteAccount,
-          confirmDeleteAccount,
+          cancelDeactivateAccount,
+          confirmDeactivateAccount,
           onChangeUsername,
         }}
       />

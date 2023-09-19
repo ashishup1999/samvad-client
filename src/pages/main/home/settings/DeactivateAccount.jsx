@@ -3,27 +3,27 @@ import PropTypes from "prop-types";
 import Modal from "../../../../components/Modal";
 import { COLORS, COMMON_TEXTS } from "../../../../constants/CommonConstants";
 
-const DeleteAccount = (props) => {
+const DeactivateAccount = (props) => {
   const {
     deleteAcc,
     usernameErr,
     enteredUsername,
-    cancelDeleteAccount,
-    confirmDeleteAccount,
+    cancelDeactivateAccount,
+    confirmDeactivateAccount,
     onChangeUsername,
   } = props;
 
   return (
     <Modal isModalOpen={deleteAcc}>
       <Wrapper>
-        <ConfirmText>{COMMON_TEXTS.DELETE_CONFIRM}</ConfirmText>
+        <ConfirmText>{COMMON_TEXTS.DEACTIVATE_CONFIRM}</ConfirmText>
         <TextInputBox value={enteredUsername} onChange={onChangeUsername} />
         {usernameErr && <ErrorText>{usernameErr}</ErrorText>}
         <OtherOptionWrapper>
           <OtherOptionsText
             bgcolor={COLORS.BLUE1}
             textcolor={COLORS.WHITE1}
-            onClick={cancelDeleteAccount}
+            onClick={cancelDeactivateAccount}
           >
             {COMMON_TEXTS.CANCEL}
           </OtherOptionsText>
@@ -31,9 +31,9 @@ const DeleteAccount = (props) => {
             borderclr={COLORS.RED1}
             bgcolor={COLORS.RED1}
             textcolor={COLORS.WHITE1}
-            onClick={confirmDeleteAccount}
+            onClick={confirmDeactivateAccount}
           >
-            {COMMON_TEXTS.DELETE}
+            {COMMON_TEXTS.DEACTIVATE}
           </OtherOptionsText>
         </OtherOptionWrapper>
       </Wrapper>
@@ -105,13 +105,13 @@ export const OtherOptionsText = styled.button`
   cursor: pointer;
 `;
 
-DeleteAccount.propTypes = {
+DeactivateAccount.propTypes = {
   deleteAcc: PropTypes.string.isRequired,
   usernameErr: PropTypes.string.isRequired,
   enteredUsername: PropTypes.string.isRequired,
-  cancelDeleteAccount: PropTypes.func.isRequired,
-  confirmDeleteAccount: PropTypes.func.isRequired,
+  cancelDeactivateAccount: PropTypes.func.isRequired,
+  confirmDeactivateAccount: PropTypes.func.isRequired,
   onChangeUsername: PropTypes.func.isRequired,
 };
 
-export default DeleteAccount;
+export default DeactivateAccount;

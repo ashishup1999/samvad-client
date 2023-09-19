@@ -9,6 +9,7 @@ import {
 import { getUserAllChats, getUsernamesByChatId } from "../../services/home";
 import { SocketContext } from "../../contexts/common/SocketProvider";
 import moment from "moment";
+import { decryptData } from "../../utils/Encryption";
 
 const initialState = {
   allChats: [],
@@ -36,7 +37,10 @@ const useChats = () => {
   });
 
   socket.on(SOCKET_NAMES.NEW_MESSAGE, async (chatId) => {
-    const { usernames } = await getUsernamesByChatId(chatId);
+    const res = await getUsernamesByChatId(chatId);
+    const usernames = res?.usernames?.map((encryptedUname) =>
+      decryptData(encryptedUname)
+    );
     if (usernames.includes(username)) {
       socket.emit(SOCKET_NAMES.JOIN_ROOM, { chatId });
       setBasicDetails({
