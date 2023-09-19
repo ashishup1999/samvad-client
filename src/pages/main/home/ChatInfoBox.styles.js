@@ -56,7 +56,7 @@ export const ChatAdditionalInfo = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 50px;
+  width: 80px;
   height: 68px;
   padding: 13px 2px;
   margin-left: auto;

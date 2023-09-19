@@ -46,7 +46,7 @@ export const timeFromNow = (moment, timeAt) => {
     minutes: Number(currTS.diff(msgTS, "minutes")),
     seconds: Number(currTS.diff(msgTS, "seconds")),
   };
-  if (diffs.days < 1) return msgTS.format("h:mm");
+  if (diffs.days < 1) return msgTS.format("h:mm A");
   if (diffs.days < 2) return "Yesterday";
   if (diffs.days < 8) return msgTS.format("dddd");
   if (diffs.days < 8) return msgTS.format("dddd");
@@ -55,10 +55,10 @@ export const timeFromNow = (moment, timeAt) => {
 
 export const getDateAndTime = (moment, timeAt) => {
   const msgTS = moment(timeAt);
-  const clockTime = msgTS.format("h:mm");
+  const clockTime = msgTS.format("h:mm A");
   const timeDiff = timeFromNow(moment, timeAt);
   if (clockTime === timeDiff) return timeDiff;
-  return `${msgTS.format("h:mm")} ${timeFromNow(moment, timeAt)}`;
+  return `${msgTS.format("h:mm A")} ${timeFromNow(moment, timeAt)}`;
 };
 
 export const debounce = (func, timeout = 1000) => {

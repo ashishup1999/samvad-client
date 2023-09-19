@@ -40,3 +40,9 @@ export const updateMultipleValues = async (payload) => {
 export const deleteUser = async (username) => {
   return ajaxApi.get(`${APIConstants.DELETE_USER}/${username}`);
 };
+
+export const markAllMsgsSeen = async (username, chatId) => {
+  return ajaxApi.get(
+    `${APIConstants.MARK_ALL_MSGS_SEEN}/${username}?chatId=${chatId}`
+  );
+};

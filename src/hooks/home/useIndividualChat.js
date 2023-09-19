@@ -2,7 +2,7 @@ import { useContext, useEffect, useReducer, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
-import { getChatInfoByChatId } from "../../services/home";
+import { getChatInfoByChatId, markAllMsgsSeen } from "../../services/home";
 import { SocketContext } from "../../contexts/common/SocketProvider";
 import { SOCKET_NAMES } from "../../constants/CommonConstants";
 import moment from "moment/moment";
@@ -43,6 +43,7 @@ const useIndividualChats = () => {
             maxPage: currPage,
           },
         });
+        setBasicDetails({ payload: { msgsUpdated: true } });
       }
     } catch {
       //add error
@@ -75,7 +76,8 @@ const useIndividualChats = () => {
     }
   };
 
-  socket.on(SOCKET_NAMES.RECEIVE_MSG, (msgInfo) => {
+  socket.on(SOCKET_NAMES.RECEIVE_MSG, async (msgInfo) => {
+    await markAllMsgsSeen(username, selectedChatId);
     dispatch({ payload: { msgs: [msgInfo?.msgObj, ...msgs], typedMsg: "" } });
     setBasicDetails({ payload: { msgsUpdated: true } });
   });

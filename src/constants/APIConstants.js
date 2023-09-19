@@ -14,5 +14,6 @@ export default {
   GET_USERNAMES_BY_CHAT_ID: `${API_BASE_URL}/getUsernamesByChatId`,
   UPDATE_SINGLE_VALUE: `${API_BASE_URL}/updateUserSingleValue`,
   UPDATE_MULTIPLE_VALUES: `${API_BASE_URL}/updateUserMultipleValues`,
-  DELETE_USER:`${API_BASE_URL}/deleteUser`
+  DELETE_USER: `${API_BASE_URL}/deleteUser`,
+  MARK_ALL_MSGS_SEEN: `${API_BASE_URL}/markAllMsgsSeen`,
 };
