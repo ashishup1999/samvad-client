@@ -10,6 +10,7 @@ import {
 import { SocketContext } from "../../contexts/common/SocketProvider";
 import { COMMON_TEXTS, SOCKET_NAMES } from "../../constants/CommonConstants";
 import moment from "moment/moment";
+import { ErrorContext } from "../../contexts/common/ErrorProvider";
 
 const initialState = {
   otherUserInfo: null,
@@ -20,6 +21,7 @@ const initialState = {
   deleteOption: false,
   msgsToBeDel: [],
   profileCard: null,
+  triggerSetUserInfo: false,
 };
 
 const useIndividualChats = () => {
@@ -33,16 +35,18 @@ const useIndividualChats = () => {
     deleteOption,
     msgsToBeDel,
     profileCard,
+    triggerSetUserInfo,
   } = state;
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { username, selectedChatId, isSelectedChatNew } = basicDetails;
   const { socket } = useContext(SocketContext);
   const msgDivSecRef = useRef(null);
+  const { dispatchError } = useContext(ErrorContext);
 
   useEffect(() => {
     if (selectedChatId) setOtherUserInfo(currPage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedChatId, currPage, msgs]);
+  }, [selectedChatId, currPage, triggerSetUserInfo]);
 
   const setOtherUserInfo = async () => {
     try {
@@ -57,12 +61,13 @@ const useIndividualChats = () => {
             otherUserInfo: res?.users[0],
             msgs: [...msgs, ...res.msgs],
             maxPage: currPage,
+            triggerSetUserInfo: false,
           },
         });
         setBasicDetails({ payload: { msgsUpdated: true } });
       }
     } catch {
-      //add error
+      dispatchError(true);
     }
   };
 
@@ -88,15 +93,26 @@ const useIndividualChats = () => {
       dispatch({ payload: { msgs: [msgObj, ...msgs], typedMsg: "" } });
       setBasicDetails({ payload: { msgsUpdated: true } });
     } catch (error) {
-      //error condition to be added
+      dispatchError(true);
     }
   };
 
-  socket.on(SOCKET_NAMES.RECEIVE_MSG, async (msgInfo) => {
+  useEffect(() => {
+    updateMsgsStatus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [msgs]);
+
+  socket.on(SOCKET_NAMES.CONNECTION_FAILED, () => {
+    dispatchError(true);
+  });
+
+  const updateMsgsStatus = async () => {
+    await markAllMsgsSeen(username, selectedChatId);
+  };
+
+  socket.on(SOCKET_NAMES.RECEIVE_MSG, (msgInfo) => {
     if (msgInfo?.chatId === selectedChatId) {
-      await markAllMsgsSeen(username, selectedChatId);
       dispatch({ payload: { msgs: [msgInfo?.msgObj, ...msgs], typedMsg: "" } });
-      setBasicDetails({ payload: { msgsUpdated: true } });
     }
   });
 
@@ -139,6 +155,7 @@ const useIndividualChats = () => {
             msgsToBeDel: [],
             currPage: 0,
             maxPage: -1,
+            triggerSetUserInfo: true,
           },
         });
         setBasicDetails({ payload: { msgsUpdated: true } });
@@ -146,7 +163,7 @@ const useIndividualChats = () => {
         throw res;
       }
     } catch {
-      //TODO Error
+      dispatchError(true);
     }
   };
 

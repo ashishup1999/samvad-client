@@ -8,6 +8,7 @@ import {
 } from "../../constants/CommonConstants";
 import { AuthContext } from "../../contexts/auth/AuthProvider";
 import { deactivateUser, updateSingleValue } from "../../services/home";
+import { ErrorContext } from "../../contexts/common/ErrorProvider";
 
 const initialState = {
   chooseAvatar: false,
@@ -33,6 +34,7 @@ const useSettings = () => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { username } = basicDetails;
   const { setAuthState } = useContext(AuthContext);
+  const { dispatchError } = useContext(ErrorContext);
 
   const onEditProfileImg = () => {
     dispatch({
@@ -59,7 +61,7 @@ const useSettings = () => {
         }
       }
     } catch {
-      // TODO
+      dispatchError(true)
     }
   };
 
@@ -109,7 +111,7 @@ const useSettings = () => {
         dispatch({ payload: { usernameErr: ERROR_TEXTS.WRONG_USERNAME } });
       }
     } catch {
-      //TODO error
+      dispatchError(true)
     }
   };
 

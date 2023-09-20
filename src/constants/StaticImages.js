@@ -24,6 +24,9 @@ import userCheck from "/images/user-check.svg";
 import userImgEdit from "/images/user-img-edit.svg";
 import userInfoEdit from "/images/edit-info.svg";
 import deleteWhite from "/images/delete_white.svg";
+import errLogo from "/images/error_logo.svg";
+import loader from "/images/loader.svg";
+
 import AvatarImg7309667 from "/avatars/7309667.jpg";
 import AvatarImg7309670 from "/avatars/7309670.jpg";
 import AvatarImg7309681 from "/avatars/7309681.jpg";
@@ -35,7 +38,7 @@ import AvatarImg9439726 from "/avatars/9439726.jpg";
 import AvatarImg9439833 from "/avatars/9439833.jpg";
 import AvatarImg9440461 from "/avatars/9440461.jpg";
 
-export const IMAGES = { samvadLogo };
+export const IMAGES = { samvadLogo, errLogo, loader };
 
 export const ICONS = {
   lockIcon,

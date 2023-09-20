@@ -9,9 +9,11 @@ import { updateMultipleValues } from "../../../../services/home";
 import { useContext, useEffect, useState } from "react";
 import { BasicDetailsContext } from "../../../../contexts/common/BasicDetailsProvider";
 import Toast from "../../../../components/Toast";
+import { ErrorContext } from "../../../../contexts/common/ErrorProvider";
 
 const ChangeUserInfo = ({ isEdit, setEdit }) => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
+  const { dispatchError } = useContext(ErrorContext);
   const formMethods = useForm({ mode: "all" });
   const { register, getValues, formState } = formMethods;
   const { errors } = formState;
@@ -57,7 +59,7 @@ const ChangeUserInfo = ({ isEdit, setEdit }) => {
         }
       }
     } catch {
-      //TODO
+      dispatchError(true);
     }
   };
 

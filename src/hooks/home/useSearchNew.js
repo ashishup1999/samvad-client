@@ -3,6 +3,7 @@ import { debounce, defaultStateReducer } from "../../utils/CommonUtils";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
 import { createChat, getUsersOnSearch } from "../../services/home";
 import { COMMON_TEXTS, SCREENS } from "../../constants/CommonConstants";
+import { ErrorContext } from "../../contexts/common/ErrorProvider";
 
 const initialState = {
   searchValue: "",
@@ -14,6 +15,7 @@ const useSearchNew = () => {
   const { searchValue, searchResults } = state;
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { username } = basicDetails;
+  const { dispatchError } = useContext(ErrorContext);
 
   const searchFunction = async () => {
     try {
@@ -24,7 +26,7 @@ const useSearchNew = () => {
         },
       });
     } catch {
-      //error condition will be added
+      dispatchError(true);
     }
   };
 
@@ -62,7 +64,7 @@ const useSearchNew = () => {
         throw res;
       }
     } catch {
-      //error writting pending
+      dispatchError(true);
     }
   };
 

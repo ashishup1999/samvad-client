@@ -10,6 +10,7 @@ import { getUserAllChats, getUsernamesByChatId } from "../../services/home";
 import { SocketContext } from "../../contexts/common/SocketProvider";
 import moment from "moment";
 import { decryptData } from "../../utils/Encryption";
+import { ErrorContext } from "../../contexts/common/ErrorProvider";
 
 const initialState = {
   allChats: [],
@@ -22,6 +23,7 @@ const useChats = () => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
   const { allChats, profileCard } = state;
   const { socket } = useContext(SocketContext);
+  const { dispatchError } = useContext(ErrorContext);
 
   useEffect(() => {
     getAllChats();
@@ -35,6 +37,10 @@ const useChats = () => {
 
   socket.on(SOCKET_NAMES.RECEIVE_MSG, () => {
     setBasicDetails({ payload: { msgsUpdated: true } });
+  });
+
+  socket.on(SOCKET_NAMES.CONNECTION_FAILED, () => {
+    dispatchError(true);
   });
 
   socket.on(SOCKET_NAMES.NEW_MESSAGE, async (chatId) => {
@@ -81,7 +87,7 @@ const useChats = () => {
         throw res;
       }
     } catch {
-      //TODO Error screen
+      dispatchError(true);
     }
   };
 

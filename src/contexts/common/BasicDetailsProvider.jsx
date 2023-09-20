@@ -4,6 +4,7 @@ import { defaultStateReducer } from "../../utils/CommonUtils";
 import { getUserInfo } from "../../services/home";
 import { SCREENS } from "../../constants/CommonConstants";
 import { AuthContext } from "../auth/AuthProvider";
+import { LoaderContext } from "./LoaderProvider";
 
 export const BasicDetailsContext = createContext();
 
@@ -23,10 +24,19 @@ const initialState = {
 const BasicDetailsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
   const { authState } = useContext(AuthContext);
+  const { dispatchLoader } = useContext(LoaderContext);
 
   const loadUserInfo = async () => {
-    const { email, fullName, profileImg } = await getUserInfo(state?.username);
-    dispatch({ payload: { email, fullName, profileImg } });
+    try {
+      dispatchLoader(true);
+      const { email, fullName, profileImg } = await getUserInfo(
+        state?.username
+      );
+      dispatch({ payload: { email, fullName, profileImg } });
+      dispatchLoader(false);
+    } catch {
+      dispatchLoader(false);
+    }
   };
 
   useEffect(() => {

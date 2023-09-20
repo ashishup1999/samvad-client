@@ -40,7 +40,10 @@ export const COMMON_TEXTS = {
   SAVE_CHANGES: "Save Changes",
   CHANGES_SAVED: "Changes Saved Successfuly",
   YOU: "You",
-  DELETE_MSGS:"Delete Messages"
+  DELETE_MSGS: "Delete Messages",
+  ERROR_MSG:
+    "Sorry for the Interruption, seems to be a technical issue, try again later",
+  WAIT_MSG: "Wait while we connect you to the world of संवाद",
 };
 
 export const ERROR_TEXTS = {
@@ -50,12 +53,14 @@ export const ERROR_TEXTS = {
 
 export const SOCKET_NAMES = {
   CONNECTION: "connection",
+  CONNECTION_FAILED: "connect_failed",
   USER_ACTIVE: "user_active",
   INFORM_USER_ACTIVE: "inform_user_active",
   SEND_MSG: "send_message",
   RECEIVE_MSG: "receive_msg",
   MSG_DELIVERED: "msg_delivered",
   MSG_SEEN: "msg_seen",
+  MSG_SEEN_AFTER: "msg_seen_after",
   CREATE_ROOM: "create_room",
   JOIN_ROOM: "join_room",
   NEW_MESSAGE: "new_msg",

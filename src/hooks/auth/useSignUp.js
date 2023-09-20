@@ -1,12 +1,12 @@
-import { useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import { defaultStateReducer } from "../../utils/CommonUtils";
 import { signUpUser } from "../../services/auth";
 import {
   AUTH_TYPE,
   COMMON_TEXTS,
-  ERROR_TEXTS,
 } from "../../constants/CommonConstants";
 import { encryptData } from "../../utils/Encryption";
+import { ErrorContext } from "../../contexts/common/ErrorProvider";
 
 const initialState = {
   accountCreated: false,
@@ -19,6 +19,7 @@ const useSignUp = ({ getValues, onOptionChange }) => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
   const { accountCreated, chooseAvatar, selectedAvatar, showSignUpToast } =
     state;
+  const { dispatchError } = useContext(ErrorContext);
 
   useEffect(() => {
     if (accountCreated) {
@@ -80,7 +81,7 @@ const useSignUp = ({ getValues, onOptionChange }) => {
         }
       }
     } catch {
-      console.log(ERROR_TEXTS.TECHNICAL);
+      dispatchError(true)
     }
   };
 

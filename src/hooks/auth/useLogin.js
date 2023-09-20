@@ -3,6 +3,7 @@ import { defaultStateReducer } from "../../utils/CommonUtils";
 import { authenticateUser } from "../../services/auth";
 import { BasicDetailsContext } from "../../contexts/common/BasicDetailsProvider";
 import { encryptData } from "../../utils/Encryption";
+import { ErrorContext } from "../../contexts/common/ErrorProvider";
 
 const initialState = {
   showPassword: false,
@@ -13,6 +14,7 @@ const useLogin = ({ getValues, setAuthState }) => {
   const { showPassword } = state;
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { rememberMe } = basicDetails;
+  const { dispatchError } = useContext(ErrorContext);
 
   const onEyeClick = () => {
     dispatch({
@@ -59,7 +61,7 @@ const useLogin = ({ getValues, setAuthState }) => {
         }
       }
     } catch {
-      console.log("Facing technical issues in login");
+      dispatchError(true);
     }
   };
 
