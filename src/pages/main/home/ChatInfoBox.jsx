@@ -16,10 +16,19 @@ import { useContext } from "react";
 import { BasicDetailsContext } from "../../../contexts/common/BasicDetailsProvider";
 import { AVATARS } from "../../../constants/StaticImages";
 import { COMMON_TEXTS } from "../../../constants/CommonConstants";
+import { useState } from "react";
+import ProfileCard from "../../../components/ProfileCard";
 
-const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
+const ChatInfoBox = ({
+  chatId,
+  otherUsername,
+  fullName,
+  lastMsg,
+  profileImg,
+}) => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { username, selectedChatId } = basicDetails;
+  const [profileCard, setProfileCard] = useState(null);
   const isSeen = lastMsg?.seenBy?.includes(username);
 
   const onClickChat = (e) => {
@@ -34,7 +43,14 @@ const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
         selected={selectedChatId === chatId}
         onClick={onClickChat}
       >
-        <ProfileImage src={AVATARS[profileImg]} alt="" />
+        <ProfileImage
+          src={AVATARS[profileImg]}
+          alt=""
+          onClick={(e) => {
+            e.stopPropagation();
+            setProfileCard({ username: otherUsername, fullName, profileImg });
+          }}
+        />
         <ChatBriefInfo>
           <UserFullName>{fullName}</UserFullName>
           <LastMessage seen={isSeen}>
@@ -49,12 +65,22 @@ const ChatInfoBox = ({ chatId, fullName, lastMsg, profileImg }) => {
           {!isSeen && <NewMsgDot />}
         </ChatAdditionalInfo>
       </ChatInfoWrapper>
+      <ProfileCard
+        isCardOpen={profileCard}
+        {...profileCard}
+        closeModal={() => setProfileCard(null)}
+        onCreateChat={() => {
+          setBasicDetails({ payload: { selectedChatId: chatId } });
+          setProfileCard(null);
+        }}
+      />
     </>
   );
 };
 
 ChatInfoBox.propTypes = {
   chatId: PropTypes.string.isRequired,
+  otherUsername: PropTypes.string.isRequired,
   fullName: PropTypes.string.isRequired,
   profileImg: PropTypes.string.isRequired,
   lastMsg: PropTypes.shape({

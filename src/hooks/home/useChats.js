@@ -13,13 +13,14 @@ import { decryptData } from "../../utils/Encryption";
 
 const initialState = {
   allChats: [],
+  profileCard: null,
 };
 
 const useChats = () => {
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { username, fullName, profileImg, msgsUpdated } = basicDetails;
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
-  const { allChats } = state;
+  const { allChats, profileCard } = state;
   const { socket } = useContext(SocketContext);
 
   useEffect(() => {
@@ -64,7 +65,7 @@ const useChats = () => {
         res?.chats?.forEach((obj) => {
           if (obj?.username) {
             const allChatsPayload = {};
-            allChatsPayload.username = obj?.username;
+            allChatsPayload.otherUsername = obj?.username;
             allChatsPayload.fullName = obj?.fullName;
             allChatsPayload.profileImg = obj?.profileImg;
             allChatsPayload.chatId = obj?.chatId;
@@ -102,7 +103,20 @@ const useChats = () => {
     setBasicDetails({ payload: { currentLeftScreen: SCREENS.SETTINGS } });
   };
 
-  return { fullName, profileImg, allChats, onSettingsClick, onChatSearch };
+  const toggleProfileCard = (val) => {
+    dispatch({ payload: { profileCard: val } });
+  };
+
+  return {
+    username,
+    fullName,
+    profileImg,
+    allChats,
+    profileCard,
+    onSettingsClick,
+    onChatSearch,
+    toggleProfileCard,
+  };
 };
 
 export default useChats;

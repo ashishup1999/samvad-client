@@ -19,6 +19,7 @@ const initialState = {
   maxPage: -1,
   deleteOption: false,
   msgsToBeDel: [],
+  profileCard: null,
 };
 
 const useIndividualChats = () => {
@@ -31,6 +32,7 @@ const useIndividualChats = () => {
     maxPage,
     deleteOption,
     msgsToBeDel,
+    profileCard,
   } = state;
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { username, selectedChatId, isSelectedChatNew } = basicDetails;
@@ -162,12 +164,17 @@ const useIndividualChats = () => {
     }
   };
 
+  const toggleProfileCard = (val) => {
+    dispatch({ payload: { profileCard: val } });
+  };
+
   return {
     otherUserInfo,
     msgs,
     typedMsg,
     msgDivSecRef,
     deleteOption,
+    profileCard,
     onTyping,
     sendMessage,
     onBackClick,
@@ -176,6 +183,7 @@ const useIndividualChats = () => {
     toggleMoreOption,
     onClickDeleteMsgs,
     onSelectToDelMsgs,
+    toggleProfileCard,
   };
 };
 

@@ -27,6 +27,7 @@ import { COMMON_TEXTS } from "../../../../constants/CommonConstants";
 import { ScreenSizeContext } from "../../../../contexts/common/ScreenSizeProvider";
 import { getDateAndTime } from "../../../../utils/CommonUtils";
 import moment from "moment";
+import ProfileCard from "../../../../components/ProfileCard";
 
 const ChatScreen = () => {
   const { mobileMax, tabletMax } = useContext(ScreenSizeContext);
@@ -38,6 +39,7 @@ const ChatScreen = () => {
     typedMsg,
     msgDivSecRef,
     deleteOption,
+    profileCard,
     onTyping,
     sendMessage,
     onBackClick,
@@ -46,6 +48,7 @@ const ChatScreen = () => {
     toggleMoreOption,
     onClickDeleteMsgs,
     onSelectToDelMsgs,
+    toggleProfileCard,
   } = useIndividualChats();
 
   return (
@@ -55,7 +58,17 @@ const ChatScreen = () => {
           {(mobileMax || tabletMax) && (
             <BackIcon src={ICONS.backIconWhite} alt="" onClick={onBackClick} />
           )}
-          <ProfileImage src={AVATARS[otherUserInfo?.profileImg]} alt="" />
+          <ProfileImage
+            src={AVATARS[otherUserInfo?.profileImg]}
+            alt=""
+            onClick={() =>
+              toggleProfileCard({
+                username: otherUserInfo?.username,
+                fullName: otherUserInfo?.fullName,
+                profileImg: otherUserInfo?.profileImg,
+              })
+            }
+          />
           <UserFullName>{otherUserInfo?.fullName}</UserFullName>
           <MoreOptionsDiv>
             {deleteOption ? (
@@ -122,6 +135,11 @@ const ChatScreen = () => {
           </SendBoxContainer>
         </BottomContainer>
       </ChatScreenWrapper>
+      <ProfileCard
+        isCardOpen={profileCard}
+        {...profileCard}
+        closeModal={() => toggleProfileCard(null)}
+      />
     </>
   );
 };
