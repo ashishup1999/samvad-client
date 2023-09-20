@@ -91,9 +91,11 @@ const useIndividualChats = () => {
   };
 
   socket.on(SOCKET_NAMES.RECEIVE_MSG, async (msgInfo) => {
-    await markAllMsgsSeen(username, selectedChatId);
-    dispatch({ payload: { msgs: [msgInfo?.msgObj, ...msgs], typedMsg: "" } });
-    setBasicDetails({ payload: { msgsUpdated: true } });
+    if (msgInfo?.chatId === selectedChatId) {
+      await markAllMsgsSeen(username, selectedChatId);
+      dispatch({ payload: { msgs: [msgInfo?.msgObj, ...msgs], typedMsg: "" } });
+      setBasicDetails({ payload: { msgsUpdated: true } });
+    }
   });
 
   const onBackClick = () => {
