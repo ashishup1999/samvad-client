@@ -43,18 +43,20 @@ const useSettings = () => {
   };
 
   const closeAvatarModal = () => {
-    dispatch({ payload: { chooseAvatar: false } });
+    dispatch({ payload: { chooseAvatar: false, selectedAvatar: "" } });
   };
 
   const changeAvatar = async () => {
     try {
-      const payload = { username, key: "profileImg", value: selectedAvatar };
-      const res = await updateSingleValue(payload);
-      if (res?.status == COMMON_TEXTS.SUCCESS) {
-        dispatch({ payload: { chooseAvatar: false } });
-        setBasicDetails({ payload: { profileImg: selectedAvatar } });
-      } else {
-        throw res;
+      if (selectedAvatar) {
+        const payload = { username, key: "profileImg", value: selectedAvatar };
+        const res = await updateSingleValue(payload);
+        if (res?.status == COMMON_TEXTS.SUCCESS) {
+          dispatch({ payload: { chooseAvatar: false, selectedAvatar: "" } });
+          setBasicDetails({ payload: { profileImg: selectedAvatar } });
+        } else {
+          throw res;
+        }
       }
     } catch {
       // TODO
