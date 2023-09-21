@@ -18,6 +18,6 @@
 .app {
   display: flex;
   height: 100%;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
 }
