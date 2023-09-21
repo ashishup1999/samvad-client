@@ -25,8 +25,8 @@ export const LeftContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: ${(props) => (props.mobilewidth ? "90%" : "70%")};
-  height: 75%;
-  border-radius: ${(props) => (props.fullwidth ? "20px" : "20px 0px 0px 20px")};
+  height: ${(props) => (props.mobilewidth ? "100%" : "75%")};
+  border-radius: ${(props) => (props.fullwidth ? "20px" : "0px")};
   background: ${COLORS.WHITE1};
   padding: ${(props) => (props.mobilewidth ? "1%" : "6%")};
   overflow-y: scroll;
@@ -127,7 +127,7 @@ export const MobileLogoDiv = styled.div`
   margin: 0 0 20px;
   background: ${COLORS.BLUE1};
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 export const MobileLogoHeader = styled.p`
