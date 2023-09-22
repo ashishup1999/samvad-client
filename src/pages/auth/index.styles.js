@@ -26,7 +26,7 @@ export const LeftContainer = styled.div`
   align-items: center;
   width: ${(props) => (props.mobilewidth ? "90%" : "70%")};
   height: ${(props) => (props.mobilewidth ? "100%" : "75%")};
-  border-radius: ${(props) => (props.fullwidth ? "20px" : "0px")};
+  border-radius: ${(props) => (props.fullwidth ? "20px" : "20px 0 0 20px")};
   background: ${COLORS.WHITE1};
   padding: ${(props) => (props.mobilewidth ? "1%" : "6%")};
   overflow-y: scroll;
