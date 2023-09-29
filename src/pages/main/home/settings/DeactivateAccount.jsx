@@ -21,7 +21,7 @@ const DeactivateAccount = (props) => {
         {usernameErr && <ErrorText>{usernameErr}</ErrorText>}
         <OtherOptionWrapper>
           <OtherOptionsText
-            bgcolor={COLORS.BLUE1}
+            bgcolor={COLORS.BLUE_GRAD1}
             textcolor={COLORS.WHITE1}
             onClick={cancelDeactivateAccount}
           >
@@ -94,11 +94,11 @@ export const OtherOptionsText = styled.button`
   width: 48%;
   gap: 10px;
   padding: 10px 20px;
-  background-color: ${(props) => props.bgcolor || COLORS.WHITE1};
+  background: ${(props) => props.bgcolor || COLORS.WHITE1};
   color: ${(props) => props.textcolor || COLORS.BLUE1};
   font-size: 14px;
   font-family: "roboto-smvd-medium";
-  border-radius: 50px;
+  border-radius: 10px;
   border: 1px solid ${(props) => props.borderclr || COLORS.BLUE1};
   margin: 10px 0px;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);

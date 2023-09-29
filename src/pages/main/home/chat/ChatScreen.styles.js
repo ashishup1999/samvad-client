@@ -8,6 +8,13 @@ export const ChatScreenWrapper = styled.div`
   height: 100%;
 `;
 
+export const UserInfoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`
+
 export const UserInfoDiv = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -15,11 +22,18 @@ export const UserInfoDiv = styled.div`
   height: 75px;
   width: 100%;
   padding: 10px 20px;
-  border-radius: 20px;
-  background: ${COLORS.BLUE1};
+  border-radius: 50px;
+  background: ${COLORS.BLUE_GRAD1};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-  margin-bottom: 1px;
+  margin-bottom: 15px;
   cursor: pointer;
+`;
+
+export const ProfileImgBg = styled.div`
+  padding: 1px;
+  background: ${COLORS.WHITE1};
+  margin-right: 15px;
+  border-radius: 50px;
 `;
 
 export const ProfileImage = styled.img`
@@ -27,8 +41,7 @@ export const ProfileImage = styled.img`
   height: 45px;
   width: 45px;
   border-radius: 50px;
-  margin-right: 15px;
-  background: ${COLORS.WHITE1};
+  object-fit: cover;
 `;
 
 export const UserFullName = styled.p`
@@ -47,23 +60,9 @@ export const MoreOptionsIcon = styled.img`
   display: flex;
   height: 30px;
   width: auto;
-  padding: 3px;
+  padding: ${(props) => props.padd || "3px"};
+  margin: 0 5px;
   cursor: pointer;
-`;
-
-export const MoreOption = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 10px;
-  height: 30px;
-  margin: 2px;
-  border-radius: 10px;
-  color: ${COLORS.BLUE1};
-  background: ${COLORS.WHITE1};
-  border-bottom: 1px solid ${COLORS.BLUE1};
-  font-family: "roboto-smvd-medium";
-  font-size: 14px;
 `;
 
 export const BackIcon = styled.img`
@@ -81,7 +80,7 @@ export const BottomContainer = styled.div`
   align-items: center;
   width: 100%;
   margin-top: auto;
-  padding: 5px 0 20px;
+  padding: 15px 0px;
   border-radius: 30px;
 `;
 
@@ -92,7 +91,7 @@ export const SendBoxContainer = styled.div`
   height: 60px;
   width: 100%;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 50px;
   background: ${COLORS.WHITE1};
   border: 1px solid ${COLORS.BLUE1};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
@@ -123,7 +122,7 @@ export const SendIcon = styled.img`
   padding: 5px;
   margin-left: auto;
   cursor: pointer;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   border-radius: 50px;
 `;
 
@@ -150,8 +149,8 @@ export const MsgBoxSender = styled.div`
   max-width: 40%;
   width: fit-content;
   padding: 10px 20px;
-  border-radius: 20px;
-  background: ${COLORS.BLUE1};
+  border-radius: 7px 20px 20px 20px;
+  background: ${COLORS.BLUE_GRAD1};
   color: ${COLORS.WHITE1};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   margin: 3px;
@@ -165,7 +164,7 @@ export const MsgBoxOthers = styled.div`
   max-width: 40%;
   width: fit-content;
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 20px 7px 20px 20px;
   background: ${COLORS.WHITE1};
   border: 1px solid ${COLORS.BLUE1};
   color: ${COLORS.BLUE1};
@@ -207,8 +206,9 @@ export const CheckBox = styled.input`
   height: 15px;
   place-content: center;
   margin: auto 5px;
+  cursor: pointer;
   &:checked {
-    background-color: ${COLORS.BLUE1};
+    background: ${COLORS.BLUE_GRAD1};
     box-shadow: inset 0px 0px 0px 2px ${COLORS.WHITE1};
   }
 `;

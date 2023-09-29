@@ -14,6 +14,7 @@ import rules from "../../../utils/Validation";
 import Input from "../../../components/Input";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/auth/AuthProvider";
+import { COMMON_TEXTS } from "../../../constants/CommonConstants";
 
 const LoginForm = () => {
   const formMethods = useForm({ mode: "all" });
@@ -54,12 +55,12 @@ const LoginForm = () => {
       />
       <ExtraOptions>
         <Checkbox size={22} isChecked={rememberMe} onClick={onRememberMe} />
-        <ExtraOptionText>Remember me</ExtraOptionText>
+        <ExtraOptionText>{COMMON_TEXTS.REMEMBER}</ExtraOptionText>
         <ExtraOptionLink to="/auth/forgot-password">
-          forgot password?
+          {COMMON_TEXTS.FORGOT_PASSWORD}
         </ExtraOptionLink>
       </ExtraOptions>
-      <Button onClick={onLogin}>Login</Button>
+      <Button onClick={onLogin}>{COMMON_TEXTS.LOGIN}</Button>
     </>
   );
 };

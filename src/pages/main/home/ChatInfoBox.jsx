@@ -8,6 +8,7 @@ import {
   LastMessageBy,
   NewMsgDot,
   ProfileImage,
+  ProfileImgBg,
   TimeAgo,
   UserFullName,
 } from "./ChatInfoBox.styles";
@@ -43,14 +44,16 @@ const ChatInfoBox = ({
         selected={selectedChatId === chatId}
         onClick={onClickChat}
       >
-        <ProfileImage
-          src={AVATARS[profileImg]}
-          alt=""
-          onClick={(e) => {
-            e.stopPropagation();
-            setProfileCard({ username: otherUsername, fullName, profileImg });
-          }}
-        />
+        <ProfileImgBg>
+          <ProfileImage
+            src={AVATARS[profileImg]}
+            alt=""
+            onClick={(e) => {
+              e.stopPropagation();
+              setProfileCard({ username: otherUsername, fullName, profileImg });
+            }}
+          />
+        </ProfileImgBg>
         <ChatBriefInfo>
           <UserFullName>{fullName}</UserFullName>
           <LastMessage seen={isSeen}>

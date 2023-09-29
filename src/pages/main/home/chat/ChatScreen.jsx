@@ -5,7 +5,6 @@ import {
   BottomContainer,
   ChatScreenWrapper,
   CheckBox,
-  MoreOption,
   MoreOptionsDiv,
   MoreOptionsIcon,
   MsgBox,
@@ -13,6 +12,7 @@ import {
   MsgBoxSender,
   MsgSectionDiv,
   ProfileImage,
+  ProfileImgBg,
   SendBoxContainer,
   SendIcon,
   TextInputBox,
@@ -20,6 +20,7 @@ import {
   TimeRight,
   UserFullName,
   UserInfoDiv,
+  UserInfoWrapper,
 } from "./ChatScreen.styles";
 import useIndividualChats from "../../../../hooks/home/useIndividualChat";
 import { AVATARS, ICONS } from "../../../../constants/StaticImages";
@@ -40,6 +41,7 @@ const ChatScreen = () => {
     msgDivSecRef,
     deleteOption,
     profileCard,
+    clickedMsg,
     onTyping,
     sendMessage,
     onBackClick,
@@ -49,54 +51,79 @@ const ChatScreen = () => {
     onClickDeleteMsgs,
     onSelectToDelMsgs,
     toggleProfileCard,
+    onMessageClick,
   } = useIndividualChats();
 
   return (
     <>
       <ChatScreenWrapper id={selectedChatId}>
-        <UserInfoDiv>
-          {(mobileMax || tabletMax) && (
-            <BackIcon src={ICONS.backIconWhite} alt="" onClick={onBackClick} />
-          )}
-          <ProfileImage
-            src={AVATARS[otherUserInfo?.profileImg]}
-            alt=""
-            onClick={() =>
-              toggleProfileCard({
-                username: otherUserInfo?.username,
-                fullName: otherUserInfo?.fullName,
-                profileImg: otherUserInfo?.profileImg,
-              })
-            }
-          />
-          <UserFullName>{otherUserInfo?.fullName}</UserFullName>
-          <MoreOptionsDiv>
-            {deleteOption ? (
-              <>
-                <MoreOption onClick={onClickDeleteMsgs}>
-                  {COMMON_TEXTS.DELETE_MSGS}
-                </MoreOption>
-                <MoreOption onClick={() => toggleMoreOption(false)}>
-                  {COMMON_TEXTS.CANCEL}
-                </MoreOption>
-              </>
-            ) : (
-              <MoreOptionsIcon
-                src={ICONS.deleteWhite}
+        <UserInfoWrapper>
+          <UserInfoDiv>
+            {(mobileMax || tabletMax) && (
+              <BackIcon
+                src={ICONS.backIconWhite}
                 alt=""
-                onClick={() => toggleMoreOption(true)}
+                onClick={onBackClick}
               />
             )}
-          </MoreOptionsDiv>
-        </UserInfoDiv>
+            <ProfileImgBg>
+              <ProfileImage
+                src={AVATARS[otherUserInfo?.profileImg]}
+                alt=""
+                onClick={() =>
+                  toggleProfileCard({
+                    username: otherUserInfo?.username,
+                    fullName: otherUserInfo?.fullName,
+                    profileImg: otherUserInfo?.profileImg,
+                  })
+                }
+              />
+            </ProfileImgBg>
+            <UserFullName>{otherUserInfo?.fullName}</UserFullName>
+            <MoreOptionsDiv>
+              {deleteOption ? (
+                <>
+                  <MoreOptionsIcon
+                    src={ICONS.deleteWhite}
+                    alt=""
+                    onClick={onClickDeleteMsgs}
+                  />
+                  <MoreOptionsIcon
+                    src={ICONS.crossWhite}
+                    alt=""
+                    onClick={() => toggleMoreOption(false)}
+                    padd="6px"
+                  />
+                </>
+              ) : (
+                <>
+                  <MoreOptionsIcon
+                    src={ICONS.selectAll}
+                    alt=""
+                    onClick={() => toggleMoreOption(true)}
+                  />
+                </>
+              )}
+            </MoreOptionsDiv>
+          </UserInfoDiv>
+        </UserInfoWrapper>
         <MsgSectionDiv ref={msgDivSecRef} onScroll={onMsgDivScroll}>
           {msgs.map((msgObj) => {
             if (!msgObj || !msgObj?.msg) return <></>;
             return msgObj?.sender === username ? (
               <>
-                <TimeRight>{getDateAndTime(moment, msgObj?.sentAt)}</TimeRight>
+                {msgObj?.msgId === clickedMsg && (
+                  <TimeRight>
+                    {getDateAndTime(moment, msgObj?.sentAt)}
+                  </TimeRight>
+                )}
                 <MsgBox>
-                  <MsgBoxSender>{msgObj?.msg}</MsgBoxSender>
+                  <MsgBoxSender
+                    data-testid={msgObj?.msgId}
+                    onClick={onMessageClick}
+                  >
+                    {msgObj?.msg}
+                  </MsgBoxSender>
                   {deleteOption && (
                     <CheckBox
                       data-testid={msgObj?.msgId}
@@ -108,7 +135,9 @@ const ChatScreen = () => {
               </>
             ) : (
               <>
-                <TimeLeft>{getDateAndTime(moment, msgObj?.sentAt)}</TimeLeft>
+                {msgObj?.msgId === clickedMsg && (
+                  <TimeLeft>{getDateAndTime(moment, msgObj?.sentAt)}</TimeLeft>
+                )}
                 <MsgBox>
                   {deleteOption && (
                     <CheckBox
@@ -117,7 +146,12 @@ const ChatScreen = () => {
                       onClick={onSelectToDelMsgs}
                     />
                   )}
-                  <MsgBoxOthers>{msgObj?.msg}</MsgBoxOthers>
+                  <MsgBoxOthers
+                    data-testid={msgObj?.msgId}
+                    onClick={onMessageClick}
+                  >
+                    {msgObj?.msg}
+                  </MsgBoxOthers>
                 </MsgBox>
               </>
             );

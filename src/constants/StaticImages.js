@@ -26,6 +26,9 @@ import userInfoEdit from "/images/edit-info.svg";
 import deleteWhite from "/images/delete_white.svg";
 import errLogo from "/images/error_logo.svg";
 import loader from "/images/loader.svg";
+import crossWhite from "/images/cross_white.svg";
+import selectAll from "/images/select_all.svg";
+import pointerWhite from "/images/pointer.svg";
 
 import AvatarImg7309667 from "/avatars/7309667.jpg";
 import AvatarImg7309670 from "/avatars/7309670.jpg";
@@ -66,6 +69,9 @@ export const ICONS = {
   userImgEdit,
   userInfoEdit,
   deleteWhite,
+  crossWhite,
+  selectAll,
+  pointerWhite,
 };
 
 export const AVATARS = {

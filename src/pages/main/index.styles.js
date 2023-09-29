@@ -7,6 +7,8 @@ export const HomeContainer = styled.div`
   align-items: center;
   min-width: 100%;
   min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   background: ${COLORS.WHITE1};
 `;
 

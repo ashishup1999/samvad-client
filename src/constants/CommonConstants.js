@@ -1,11 +1,12 @@
 export const COLORS = {
-  BLUE1: "#016AFC",
+  BLUE1: "#455AEC",
   WHITE1: "#FFFFFF",
   GREY1: "#808080",
   GREY2: "#EFEFEF",
   BLACK1: "#000000",
   RED1: "#ED4377",
   BLUE2: "#C5DCFB",
+  BLUE_GRAD1: "linear-gradient(315deg, #2876f9 0%, #6d17cb 74%)",
 };
 
 export const BOX_SHADOWS = {
@@ -22,6 +23,18 @@ export const AUTH_TYPE = {
 
 export const COMMON_TEXTS = {
   SAMVAD: "संवाद",
+  LOGIN: "Login",
+  SIGNUP: "Sign Up",
+  REMEMBER: "Remember me",
+  FORGOT_PASSWORD: "forgot password?",
+  GET_OTP: "Get OTP",
+  RESEND_OTP: "Resend OTP",
+  VALIDATE_OTP: "Validate OTP",
+  CHANGE_PASSWORD: "Change Password",
+  PASSWORD_CHANGED: "Password changed successfuly",
+  PASSWORD_CHANGE_FAIL:
+    "Sorry, password could not be changed, please try again!",
+  GO_TO_LOGIN: "Go to Login",
   SUCCESS: "SUCCESS",
   LOGO_FOOTER: "Enjoy Chatting with your beloved ones",
   SEARCH_CHATS: "Search chats...",
@@ -31,7 +44,6 @@ export const COMMON_TEXTS = {
   SIGNED_UP: "Successfuly Signed Up",
   SETTINGS: "Settings",
   DEACTIVATE_ACCOUNT: "Deactivate Account",
-  CHANGE_PASSWORD: "Change Password",
   LOG_OUT: "Log Out",
   BACK: "Back",
   DEACTIVATE_CONFIRM: "Enter your username to deactivate the account",

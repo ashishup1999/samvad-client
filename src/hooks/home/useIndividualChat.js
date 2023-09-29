@@ -22,6 +22,7 @@ const initialState = {
   msgsToBeDel: [],
   profileCard: null,
   triggerSetUserInfo: false,
+  clickedMsg: null,
 };
 
 const useIndividualChats = () => {
@@ -36,6 +37,7 @@ const useIndividualChats = () => {
     msgsToBeDel,
     profileCard,
     triggerSetUserInfo,
+    clickedMsg,
   } = state;
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { username, selectedChatId, isSelectedChatNew } = basicDetails;
@@ -112,7 +114,7 @@ const useIndividualChats = () => {
 
   socket.on(SOCKET_NAMES.RECEIVE_MSG, (msgInfo) => {
     if (msgInfo?.chatId === selectedChatId) {
-      dispatch({ payload: { msgs: [msgInfo?.msgObj, ...msgs], typedMsg: "" } });
+      dispatch({ payload: { msgs: [msgInfo?.msgObj, ...msgs] } });
     }
   });
 
@@ -185,6 +187,15 @@ const useIndividualChats = () => {
     dispatch({ payload: { profileCard: val } });
   };
 
+  const onMessageClick = (e) => {
+    const { testid } = e.currentTarget.dataset;
+    if (testid === clickedMsg) {
+      dispatch({ payload: { clickedMsg: null } });
+    } else {
+      dispatch({ payload: { clickedMsg: testid } });
+    }
+  };
+
   return {
     otherUserInfo,
     msgs,
@@ -192,6 +203,7 @@ const useIndividualChats = () => {
     msgDivSecRef,
     deleteOption,
     profileCard,
+    clickedMsg,
     onTyping,
     sendMessage,
     onBackClick,
@@ -201,6 +213,7 @@ const useIndividualChats = () => {
     onClickDeleteMsgs,
     onSelectToDelMsgs,
     toggleProfileCard,
+    onMessageClick,
   };
 };
 

@@ -72,14 +72,14 @@ const Settings = () => {
         {COMMON_TEXTS.DEACTIVATE_ACCOUNT}
       </OtherOptionsText>
       <OtherOptionsText
-        bgcolor={COLORS.BLUE1}
+        bgcolor={COLORS.BLUE_GRAD1}
         textcolor={COLORS.WHITE1}
         onClick={onLogOut}
       >
         {COMMON_TEXTS.LOG_OUT}
       </OtherOptionsText>
       <OtherOptionsText
-        bgcolor={COLORS.BLUE1}
+        bgcolor={COLORS.BLUE_GRAD1}
         textcolor={COLORS.WHITE1}
         onClick={onBack}
       >

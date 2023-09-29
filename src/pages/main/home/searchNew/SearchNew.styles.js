@@ -76,22 +76,29 @@ export const CreateChatButton = styled.img`
   padding: 5px;
   margin-left: auto;
   cursor: pointer;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   border-radius: 50px;
 `;
+
+export const ProfileImgBg = styled.div`
+  padding: 1px;
+  background: ${COLORS.BLUE_GRAD1};
+  margin-right: 15px;
+  border-radius: 50px;
+`
 
 export const ProfileImage = styled.img`
   display: flex;
   height: 45px;
   width: 45px;
   border-radius: 50px;
-  margin-right: 15px;
-  background: ${COLORS.BLUE1};
+  object-fit: cover;
+  cursor: pointer;
 `;
 
 export const UserFullName = styled.p`
   display: flex;
-  font-size: 18px;
+  font-size: 14px;
   font-family: "roboto-smvd-medium";
   color: ${COLORS.BLUE1};
 `;
@@ -103,7 +110,7 @@ export const BackToChatButton = styled.img`
   padding: 10px;
   margin: 0 20px 30px auto;
   cursor: pointer;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   border-radius: 50px;
   position: absolute;
   bottom: 0;

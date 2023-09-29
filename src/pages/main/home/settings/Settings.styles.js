@@ -17,7 +17,7 @@ export const SettingsText = styled.p`
   width: 200px;
   padding: 10px;
   border: none;
-  background-color: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   color: ${COLORS.WHITE1};
   font-size: 22px;
   font-family: "roboto-smvd-medium";
@@ -88,7 +88,7 @@ export const OtherOptionsText = styled.button`
   height: 50px;
   width: 250px;
   padding: 10px 20px;
-  background-color: ${(props) => props.bgcolor || COLORS.WHITE1};
+  background: ${(props) => props.bgcolor || COLORS.WHITE1};
   color: ${(props) => props.textcolor || COLORS.BLUE1};
   font-size: 18px;
   font-family: "roboto-smvd-medium";

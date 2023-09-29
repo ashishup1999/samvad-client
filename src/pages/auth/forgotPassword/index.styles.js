@@ -3,13 +3,13 @@ import { COLORS } from "../../../constants/CommonConstants";
 import { Link } from "react-router-dom";
 
 export const SuffixIcon = styled.img`
-  height: 100%;
-  padding: 6px;
+  height: 25px;
+  padding: 4px;
   cursor: pointer;
 `;
 
 export const PrefixIcon = styled.img`
-  height: 100%;
+  height: 25px;
   padding: 4px;
 `;
 
@@ -20,7 +20,7 @@ export const Button = styled.button`
   height: 50px;
   width: 250px;
   padding: 10px 20px;
-  background-color: ${(props) => props.bgcolor || COLORS.BLUE1};
+  background: ${(props) => props.bgcolor || COLORS.BLUE_GRAD1};
   color: ${(props) => props.textcolor || COLORS.WHITE1};
   font-size: 18px;
   font-family: "roboto-smvd-medium";

@@ -16,10 +16,17 @@ export const UserInfoHeader = styled.div`
   width: 100%;
   padding: 10px 20px;
   border-radius: 18px;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   margin-bottom: 20px;
   cursor: pointer;
+`;
+
+export const ProfileImgBg = styled.div`
+  padding: 2px;
+  background: ${COLORS.WHITE1};
+  margin-right: 15px;
+  border-radius: 50px;
 `;
 
 export const ProfileImage = styled.img`
@@ -27,8 +34,7 @@ export const ProfileImage = styled.img`
   height: 45px;
   width: 45px;
   border-radius: 50px;
-  margin-right: 15px;
-  background: ${COLORS.WHITE1};
+  object-fit: cover;
 `;
 
 export const UserFullName = styled.p`

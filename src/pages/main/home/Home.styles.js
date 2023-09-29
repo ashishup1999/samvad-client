@@ -8,8 +8,8 @@ export const HomeWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: ${(props) => (props.mobilewidth ? "0" : "20px")};
-  background-color: ${(props) =>
-    props.tabletwidth ? COLORS.BLUE1 : COLORS.WHITE1};
+  background: ${(props) =>
+    props.tabletwidth ? COLORS.BLUE_GRAD1 : COLORS.WHITE1};
   gap: 20px;
 `;
 
@@ -22,6 +22,7 @@ export const LeftContainer = styled.div`
     else return "1";
   }};
   height: 100%;
+  width: 100%;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   padding: ${(props) =>
@@ -50,7 +51,7 @@ export const LogoWrapper = styled.div`
   height: 100%;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
 `;
 
 export const LogoImage = styled.img`
@@ -72,7 +73,7 @@ export const CreateChatButton = styled.img`
   padding: 10px;
   margin: 0 20px 30px auto;
   cursor: pointer;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   border-radius: 50px;
   position: absolute;
   bottom: 0;

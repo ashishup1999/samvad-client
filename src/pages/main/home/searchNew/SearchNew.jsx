@@ -1,3 +1,4 @@
+import ProfileCard from "../../../../components/ProfileCard";
 import { COMMON_TEXTS } from "../../../../constants/CommonConstants";
 import { AVATARS, ICONS } from "../../../../constants/StaticImages";
 import useSearchNew from "../../../../hooks/home/useSearchNew";
@@ -11,16 +12,19 @@ import {
   ProfileImage,
   UserFullName,
   BackToChatButton,
+  ProfileImgBg,
 } from "./SearchNew.styles";
 
 const SearchNew = () => {
   const {
     searchValue,
     searchResults,
+    profileCard,
     onChange,
     onSearch,
     onBackToChat,
     onCrateChat,
+    toggleProfileCard,
   } = useSearchNew();
 
   return (
@@ -40,13 +44,34 @@ const SearchNew = () => {
         return (
           <>
             <SearchOptionWrappper>
-              <ProfileImage src={AVATARS[userObj?.profileImg]} />
+              <ProfileImgBg>
+                <ProfileImage
+                  src={AVATARS[userObj?.profileImg]}
+                  alt=""
+                  onClick={() =>
+                    toggleProfileCard({
+                      username: userObj?.username,
+                      fullName: userObj?.fullName,
+                      profileImg: userObj?.profileImg,
+                    })
+                  }
+                />
+              </ProfileImgBg>
               <UserFullName>{userObj?.fullName}</UserFullName>
               <CreateChatButton
                 id={userObj?.username}
                 src={ICONS.plusIconWhite}
                 alt=""
                 onClick={onCrateChat}
+              />
+              <ProfileCard
+                isCardOpen={profileCard}
+                {...profileCard}
+                closeModal={() => toggleProfileCard(null)}
+                onCreateChat={() => {
+                  onCrateChat({ currentTarget: { id: userObj?.username } });
+                  toggleProfileCard(null);
+                }}
               />
             </SearchOptionWrappper>
           </>

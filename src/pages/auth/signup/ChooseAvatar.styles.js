@@ -26,7 +26,7 @@ export const ChooseAvatarText = styled.p`
   flex: 1;
   padding: 10px;
   border: none;
-  background-color: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   color: ${COLORS.WHITE1};
   font-family: "roboto-smvd-medium";
   border-radius: 10px;
@@ -37,7 +37,7 @@ export const ChooseAvatarText = styled.p`
 export const Done = styled.img`
   height: 50px;
   width: 50px;
-  background-color: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   color: ${COLORS.WHITE1};
   border-radius: 10px;
   margin: 0 0 0 10px;

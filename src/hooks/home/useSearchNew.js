@@ -8,11 +8,12 @@ import { ErrorContext } from "../../contexts/common/ErrorProvider";
 const initialState = {
   searchValue: "",
   searchResults: [],
+  profileCard: null,
 };
 
 const useSearchNew = () => {
   const [state, dispatch] = useReducer(defaultStateReducer, initialState);
-  const { searchValue, searchResults } = state;
+  const { searchValue, searchResults, profileCard } = state;
   const { basicDetails, setBasicDetails } = useContext(BasicDetailsContext);
   const { username } = basicDetails;
   const { dispatchError } = useContext(ErrorContext);
@@ -68,13 +69,23 @@ const useSearchNew = () => {
     }
   };
 
+  const toggleProfileCard = (val) => {
+    dispatch({
+      payload: {
+        profileCard: val,
+      },
+    });
+  };
+
   return {
     searchValue,
     searchResults,
+    profileCard,
     onChange,
     onSearch,
     onBackToChat,
     onCrateChat,
+    toggleProfileCard
   };
 };
 

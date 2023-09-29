@@ -1,17 +1,9 @@
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import Divider from "../../../components/Divider";
 import Input from "../../../components/Input";
-import { COLORS, COMMON_TEXTS } from "../../../constants/CommonConstants";
+import { COMMON_TEXTS } from "../../../constants/CommonConstants";
 import { ICONS } from "../../../constants/StaticImages";
-import {
-  Button,
-  DividerContainer,
-  Or,
-  OtherSignUpOption,
-  OtherSignUpOptionContainer,
-  PrefixIcon,
-} from "./index.styles";
+import { Button, PrefixIcon } from "./index.styles";
 import rules from "../../../utils/Validation";
 import useSignUp from "../../../hooks/auth/useSignUp";
 import ChooseAvatar from "./ChooseAvatar";
@@ -69,17 +61,7 @@ const SignupForm = ({ onOptionChange }) => {
         rule={rules.password}
         errors={errors}
       />
-      <Button onClick={onSignUp}>Sign Up</Button>
-      <DividerContainer>
-        <Divider width="30%" color={COLORS.GREY2} />
-        <Or>or</Or>
-        <Divider width="30%" color={COLORS.GREY2} />
-      </DividerContainer>
-      <OtherSignUpOptionContainer>
-        <OtherSignUpOption src={ICONS.googleIcon} />
-        <OtherSignUpOption src={ICONS.facebookIcon} />
-        <OtherSignUpOption src={ICONS.appleIcon} />
-      </OtherSignUpOptionContainer>
+      <Button onClick={onSignUp}>{COMMON_TEXTS.SIGNUP}</Button>
       {chooseAvatar && (
         <ChooseAvatar
           chooseAvatar={chooseAvatar}

@@ -96,7 +96,7 @@ export const CreateChatButton = styled.img`
   width: auto;
   padding: 10px;
   cursor: pointer;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   border-radius: 50px;
 `;
 

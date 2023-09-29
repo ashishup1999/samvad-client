@@ -7,7 +7,7 @@ export const LeftBg = styled.div`
   justify-content: ${(props) => (props.fullwidth ? "center" : "flex-end")};
   align-items: ${(props) => (props.mobilewidth ? "flex-start" : "center")};
   min-height: 100%;
-  background: ${(props) => (props.mobilewidth ? COLORS.WHITE1 : COLORS.BLUE1)};
+  background: ${(props) => (props.mobilewidth ? COLORS.WHITE1 : COLORS.BLUE_GRAD1)};
 `;
 
 export const RightBg = styled.div`
@@ -42,7 +42,7 @@ export const RightContainer = styled.div`
   width: 70%;
   height: 75%;
   border-radius: 0px 20px 20px 0px;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   padding: 2%;
 `;
 
@@ -106,7 +106,7 @@ export const FormOptionSlider = styled.div`
   border-radius: 8px;
   position: absolute;
   top: 0;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   left: ${(props) => (props.authoption === AUTH_TYPE.login ? "0%" : "50%")};
   animation-duration: 250ms;
   animation-name: ${(props) =>
@@ -125,7 +125,7 @@ export const MobileLogoDiv = styled.div`
   padding: 10px 20px;
   border-radius: 10px;
   margin: 0 0 20px;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   margin-top: 10px;
 `;

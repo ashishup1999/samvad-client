@@ -58,7 +58,7 @@ const ForgotPasswordForm = ({
             rule={rules.email}
             errors={errors}
           />
-          <Button onClick={onGetOTP}>Get OTP</Button>
+          <Button onClick={onGetOTP}>{COMMON_TEXTS.GET_OTP}</Button>
           {isEditAfterAuth && ExtraButton}
         </>
       )}
@@ -72,8 +72,10 @@ const ForgotPasswordForm = ({
             register={register}
             errors={errors}
           />
-          <ExtraOption onClick={onResendOtp}>Resend OTP</ExtraOption>
-          <Button onClick={onValidateOTP}>Validate OTP</Button>
+          <ExtraOption onClick={onResendOtp}>
+            {COMMON_TEXTS.RESEND_OTP}
+          </ExtraOption>
+          <Button onClick={onValidateOTP}>{COMMON_TEXTS.VALIDATE_OTP}</Button>
           {isEditAfterAuth && ExtraButton}
         </>
       )}
@@ -95,7 +97,9 @@ const ForgotPasswordForm = ({
             register={register}
             errors={errors}
           />
-          <Button onClick={onChangePassword}>Change Password</Button>
+          <Button onClick={onChangePassword}>
+            {COMMON_TEXTS.CHANGE_PASSWORD}
+          </Button>
           {isEditAfterAuth && ExtraButton}
         </>
       )}
@@ -103,10 +107,12 @@ const ForgotPasswordForm = ({
         <>
           <PassChangedwrapper>
             <CheckIcon src={ICONS.checkCircleIcon} />
-            <PassChangedText>Password changed successfuly</PassChangedText>
+            <PassChangedText>{COMMON_TEXTS.PASSWORD_CHANGED}</PassChangedText>
           </PassChangedwrapper>
           <Button>
-            <GoToLoginLink to="/auth/">Go to Login</GoToLoginLink>
+            <GoToLoginLink to="/auth/">
+              {COMMON_TEXTS.GO_TO_LOGIN}
+            </GoToLoginLink>
           </Button>
         </>
       )}
@@ -115,11 +121,13 @@ const ForgotPasswordForm = ({
           <PassChangedwrapper>
             <CheckIcon src={ICONS.redInfoIcon} />
             <PassChangedText>
-              Sorry, password could not be changed, please try again!
+              {COMMON_TEXTS.PASSWORD_CHANGE_FAIL}
             </PassChangedText>
           </PassChangedwrapper>
           <Button>
-            <GoToLoginLink to="/auth/">Go to Login</GoToLoginLink>
+            <GoToLoginLink to="/auth/">
+              {COMMON_TEXTS.GO_TO_LOGIN}
+            </GoToLoginLink>
           </Button>
         </>
       )}

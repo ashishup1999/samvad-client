@@ -7,6 +7,7 @@ import {
   ChatsWrapper,
   MoreOptionsIcon,
   ProfileImage,
+  ProfileImgBg,
   UserFullName,
   UserInfoHeader,
 } from "./Chats.styles";
@@ -27,13 +28,15 @@ const Chats = () => {
     <>
       <ChatsWrapper>
         <UserInfoHeader>
-          <ProfileImage
-            src={AVATARS[profileImg]}
-            alt=""
-            onClick={() =>
-              toggleProfileCard({ username, fullName, profileImg })
-            }
-          />
+          <ProfileImgBg>
+            <ProfileImage
+              src={AVATARS[profileImg]}
+              alt=""
+              onClick={() =>
+                toggleProfileCard({ username, fullName, profileImg })
+              }
+            />
+          </ProfileImgBg>
           <UserFullName>{fullName}</UserFullName>
           <MoreOptionsIcon
             src={ICONS.settingsWhite}

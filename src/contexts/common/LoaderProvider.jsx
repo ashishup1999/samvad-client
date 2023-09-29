@@ -46,7 +46,7 @@ export const Wrapper = styled.div`
   height: 100%;
   align-items: center;
   justify-content: center;
-  background: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   gap: 35px;
   position: fixed;
 `;

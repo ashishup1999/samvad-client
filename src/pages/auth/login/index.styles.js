@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export const SuffixIcon = styled.img`
   height: 25px;
+  padding: 4px;
   cursor: pointer;
 `;
 
@@ -43,7 +44,7 @@ export const Button = styled.button`
   min-height: 55px;
   width: 50%;
   border: none;
-  background-color: ${COLORS.BLUE1};
+  background: ${COLORS.BLUE_GRAD1};
   color: ${COLORS.WHITE1};
   font-family: "roboto-smvd-medium";
   font-size: 1.2em;

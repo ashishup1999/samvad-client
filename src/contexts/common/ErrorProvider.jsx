@@ -27,8 +27,10 @@ const ErrorProvider = ({ children }) => {
           <Portal node={document.querySelector(".app")}>
             <>
               <Wrapper>
-                <ErrorText>{COMMON_TEXTS.ERROR_MSG}</ErrorText>
-                <ErrorLogo src={IMAGES.errLogo} />
+                <ErrorContainer>
+                  <ErrorText>{COMMON_TEXTS.ERROR_MSG}</ErrorText>
+                  <ErrorLogo src={IMAGES.errLogo} />
+                </ErrorContainer>
               </Wrapper>
             </>
           </Portal>
@@ -46,9 +48,22 @@ export const Wrapper = styled.div`
   height: 100%;
   align-items: center;
   justify-content: center;
-  background: ${COLORS.BLUE1};
-  gap: 35px;
+  background: ${COLORS.WHITE1};
   position: fixed;
+  z-index: 1;
+`;
+
+export const ErrorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 97%;
+  height: 95%;
+  align-items: center;
+  justify-content: center;
+  background: ${COLORS.BLUE_GRAD1};
+  gap: 35px;
+  border-radius: 25px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
 `;
 
 export const ErrorText = styled.p`
