@@ -5,7 +5,7 @@ export const ChatInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 80px;
+  min-height: 80px;
   border: 1px solid ${COLORS.BLUE1};
   background: ${(props) => (props.selected ? COLORS.BLUE2 : COLORS.WHITE1)};
   padding: 10px;

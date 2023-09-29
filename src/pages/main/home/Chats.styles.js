@@ -6,6 +6,12 @@ export const ChatsWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const UserInfoHeader = styled.div`
